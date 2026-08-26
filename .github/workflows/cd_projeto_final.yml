@@ -4,12 +4,12 @@ on:
   # Agendamento Automático: Roda diariamente à meia-noite (00:00 UTC)
   schedule:
     - cron: '0 0 * * *'
-  # Disparo nos Pull Requests e merges da branch main
+  # Disparo nos Pull Requests e merges da branch master
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
     types: [ opened, synchronize, reopened ]
-    branches: [ "main" ]
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:

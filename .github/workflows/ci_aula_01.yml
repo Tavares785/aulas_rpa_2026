@@ -1,21 +1,21 @@
-name: CI - Aula 04 (Exceções, Arquivos e Logging)
+name: CI - Aula 01 (Variáveis e Tipagem)
 
 on:
   push:
     branches: [ "master" ]
     paths:
-      - "AULA04/**"
-      - "tests/test_aula04.py"
+      - "AULA01/**"
+      - "tests/test_bot_initializer.py"
   pull_request:
     types: [ opened, synchronize, reopened ]
     branches: [ "master" ]
     paths:
-      - "AULA04/**"
-      - "tests/test_aula04.py"
+      - "AULA01/**"
+      - "tests/test_bot_initializer.py"
 
 jobs:
-  validar_aula04:
-    name: Lint e Testes – AULA04
+  validar_aula01:
+    name: Lint e Testes – AULA01
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -45,14 +45,14 @@ jobs:
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Validar Sintaxe (flake8) – AULA04
+      - name: Validar Sintaxe (flake8) – AULA01
         run: |
-          flake8 AULA04/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 AULA01/ --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      - name: Avaliar PEP8 – AULA04
+      - name: Avaliar PEP8 – AULA01
         run: |
-          flake8 AULA04/ --count --max-complexity=10 --max-line-length=127 --statistics
+          flake8 AULA01/ --count --max-complexity=10 --max-line-length=127 --statistics
 
-      - name: Executar Testes – processador_csv.py
+      - name: Executar Testes – bot_initializer.py
         run: |
-          pytest tests/test_aula04.py -v
+          pytest tests/test_bot_initializer.py -v
