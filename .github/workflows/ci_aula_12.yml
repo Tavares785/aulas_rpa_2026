@@ -1,0 +1,66 @@
+name: CI - Aula 12 (API REST e Notificação SMTP)
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - "AULA12/**"
+      - "tests/test_aula12.py"
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ "master" ]
+    paths:
+      - "AULA12/**"
+      - "tests/test_aula12.py"
+
+jobs:
+  validar_aula12:
+    name: Lint e Testes – AULA12
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest requests
+
+      - name: Verificar existência do script
+        run: |
+          if [ ! -f "AULA12/bot_cotacao_alerta.py" ]; then
+            echo "❌ AULA12/bot_cotacao_alerta.py não encontrado."
+            exit 1
+          fi
+
+      - name: Validar Sintaxe (flake8) – AULA12
+        run: |
+          flake8 AULA12/ --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Avaliar PEP8 – AULA12
+        run: |
+          flake8 AULA12/ --count --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Verificar Sintaxe Python (py_compile)
+        run: |
+          python -m py_compile AULA12/bot_cotacao_alerta.py
+
+      - name: Executar Bot em Modo Mock (sem envio real de e-mail)
+        env:
+          MOCK_EMAIL: "true"
+        run: |
+          python AULA12/bot_cotacao_alerta.py || true
+
+      - name: Executar Testes Estruturais
+        run: |
+          if [ -f "tests/test_aula12.py" ]; then
+            pytest tests/test_aula12.py -v
+          else
+            echo "⚠ Testes não encontrados – apenas lint executado."
+          fi
