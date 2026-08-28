@@ -1,0 +1,60 @@
+name: CI - Aula 10 (Extração PDF e Regex)
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - "AULA10/**"
+      - "tests/test_aula10.py"
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ "master" ]
+    paths:
+      - "AULA10/**"
+      - "tests/test_aula10.py"
+
+jobs:
+  validar_aula10:
+    name: Lint e Testes – AULA10
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest pdfplumber pandas openpyxl
+
+      - name: Verificar existência do script
+        run: |
+          if [ ! -f "AULA10/leitor_faturas_pdf.py" ]; then
+            echo "❌ AULA10/leitor_faturas_pdf.py não encontrado."
+            exit 1
+          fi
+
+      - name: Validar Sintaxe (flake8) – AULA10
+        run: |
+          flake8 AULA10/ --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Avaliar PEP8 – AULA10
+        run: |
+          flake8 AULA10/ --count --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Verificar Sintaxe Python (py_compile)
+        run: |
+          python -m py_compile AULA10/leitor_faturas_pdf.py
+
+      - name: Executar Testes Estruturais
+        run: |
+          if [ -f "tests/test_aula10.py" ]; then
+            pytest tests/test_aula10.py -v
+          else
+            echo "⚠ Testes não encontrados – apenas lint executado."
+          fi
