@@ -7,12 +7,10 @@ for valor in transacoes:
     if valor <= 0:
         print(f"[ERRO CRÍTICO] Transação inválida encontrada (R$ {valor:.2f}). Interrompendo bot...")
         break
-        
     # 2. Verifica transações suspeitas (Acima de R$ 10.000,00)
     elif valor > 10000.00:
         print(f"[ALERTA] Transação suspeita de R$ {valor:.2f}: Encaminhada para auditoria.")
         continue
-        
     # 3. Transações normais e válidas
     else:
         print(f"[SUCESSO] Transação de R$ {valor:.2f} processada.")
