@@ -14,3 +14,4 @@ for valor in transacoes:
     # 3. Transações normais e válidas
     else:
         print(f"[SUCESSO] Transação de R$ {valor:.2f} processada.")
+        
