@@ -1,14 +1,19 @@
-name: CI - AULA14 (Validação de Estrutura de Repositório)
+name: CI - Aula 14 (Estrutura de Repositório)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
+    paths:
+      - "AULA14/**"
   pull_request:
-    branches: [ "main" ]
+    types: [ opened, synchronize, reopened ]
+    branches: [ "master" ]
+    paths:
+      - "AULA14/**"
 
 jobs:
-  validar_estrutura:
-    name: Validação de Estrutura e Boas Práticas
+  validar_aula14:
+    name: Validar Estrutura de Repositório – AULA14
     runs-on: ubuntu-latest
 
     steps:
@@ -23,88 +28,45 @@ jobs:
             echo "✔ requirements.txt encontrado."
           else
             echo "status=ausente" >> $GITHUB_OUTPUT
-            echo "AVISO: requirements.txt não encontrado na raiz do repositório."
+            echo "❌ requirements.txt não encontrado na raiz."
+            exit 1
           fi
 
       - name: Verificar presença e conteúdo de .gitignore
         id: check_gitignore
         run: |
-          if [ -f ".gitignore" ]; then
-            echo "status=presente" >> $GITHUB_OUTPUT
-            echo "✔ .gitignore encontrado. Validando conteúdo..."
-
-            if grep -qxF '.venv/' .gitignore; then
-              echo "  ✔ Linha '.venv/' presente no .gitignore."
-            else
-              echo "  AVISO: Linha '.venv/' ausente no .gitignore."
-            fi
-
-            if grep -qxF '*.log' .gitignore; then
-              echo "  ✔ Linha '*.log' presente no .gitignore."
-            else
-              echo "  AVISO: Linha '*.log' ausente no .gitignore."
-            fi
-          else
-            echo "status=ausente" >> $GITHUB_OUTPUT
-            echo "AVISO: .gitignore não encontrado na raiz do repositório."
+          if [ ! -f ".gitignore" ]; then
+            echo "❌ .gitignore não encontrado."
+            exit 1
           fi
+          echo "✔ .gitignore encontrado."
+
+          ERROS=0
+          if ! grep -qF '.venv' .gitignore; then
+            echo "⚠ '.venv/' ausente no .gitignore."
+            ERROS=$((ERROS+1))
+          fi
+          if ! grep -qF '*.log' .gitignore; then
+            echo "⚠ '*.log' ausente no .gitignore."
+            ERROS=$((ERROS+1))
+          fi
+
+          if [ "$ERROS" -gt 0 ]; then
+            echo "❌ .gitignore incompleto ($ERROS regras faltando)."
+            exit 1
+          fi
+          echo "✔ .gitignore contém as regras obrigatórias."
 
       - name: Verificar presença de README.md
-        id: check_readme
         run: |
-          if [ -f "README.md" ]; then
-            echo "status=presente" >> $GITHUB_OUTPUT
-            echo "✔ README.md encontrado."
-          else
-            echo "status=ausente" >> $GITHUB_OUTPUT
-            echo "AVISO: README.md não encontrado na raiz do repositório."
+          if [ ! -f "README.md" ]; then
+            echo "❌ README.md não encontrado."
+            exit 1
           fi
+          echo "✔ README.md encontrado."
 
-      - name: Resumo Consolidado
+      - name: Resumo
         run: |
           echo "=============================="
-          echo "  RESUMO — AULA14"
+          echo "  AULA14 – Estrutura OK ✔"
           echo "=============================="
-
-          PRESENTES=""
-          AUSENTES=""
-
-          if [ "${{ steps.check_requirements.outputs.status }}" = "presente" ]; then
-            PRESENTES="$PRESENTES  ✔ requirements.txt\n"
-          else
-            AUSENTES="$AUSENTES  ✘ requirements.txt\n"
-          fi
-
-          if [ "${{ steps.check_gitignore.outputs.status }}" = "presente" ]; then
-            PRESENTES="$PRESENTES  ✔ .gitignore\n"
-          else
-            AUSENTES="$AUSENTES  ✘ .gitignore\n"
-          fi
-
-          if [ "${{ steps.check_readme.outputs.status }}" = "presente" ]; then
-            PRESENTES="$PRESENTES  ✔ README.md\n"
-          else
-            AUSENTES="$AUSENTES  ✘ README.md\n"
-          fi
-
-          echo ""
-          echo "Arquivos presentes:"
-          if [ -n "$PRESENTES" ]; then
-            printf "$PRESENTES"
-          else
-            echo "  (nenhum)"
-          fi
-
-          echo ""
-          echo "Arquivos ausentes:"
-          if [ -n "$AUSENTES" ]; then
-            printf "$AUSENTES"
-          else
-            echo "  (nenhum — repositório bem estruturado!)"
-          fi
-
-          echo ""
-          echo "=============================="
-          echo "Validação pedagógica concluída."
-          echo "=============================="
-          exit 0
