@@ -19,6 +19,29 @@ Um analista de operações gasta cerca de 30 minutos todos os dias verificando m
    - `EXECUTION_TIMEOUT` (Float): Tempo limite por tarefa em segundos.
    - `IS_PRODUCTION` (Boolean): Flag indicando se o ambiente é de produção.
 3. Imprima no terminal uma mensagem de inicialização formatada, exibindo todos os valores configurados e a tipagem de cada variável utilizando a função `type()`.
-4. Commit o código no seu repositório Git e suba PR para o GitHub (`aulas_rpa_2026`).
+---
+
+## 🚀 Entrega
+
+1. No **seu fork**, crie uma branch a partir da `main` com o nome `lab01/SEU_RA` (ex: `lab01/123456`):
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b lab01/SEU_RA
+   ```
+2. Adicione e commite seus arquivos:
+   ```bash
+   git add .
+   git commit -m "lab01: entrega RA SEU_RA"
+   ```
+3. Suba a branch para o **seu fork**:
+   ```bash
+   git push origin lab01/SEU_RA
+   ```
+4. No GitHub, abra um **Pull Request** do seu fork para o repositório do professor (`main`) com o título:
+   ```
+   [Lab01] Entrega - RA SEU_RA
+   ```
+5. Aguarde a validação do CI (GitHub Actions) e a revisão do professor.
 
 ---
