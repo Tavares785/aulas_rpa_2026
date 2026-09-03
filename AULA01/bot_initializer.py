@@ -3,7 +3,6 @@ MAX_RETRIES = 3
 EXECUTION_TIMEOUT = 60.0
 IS_PRODUCTION = False
 
-
 def main():
     """Exibe as configurações usadas na inicialização do robô."""
     print("=" * 50)
@@ -15,7 +14,6 @@ def main():
     print(f"IS_PRODUCTION: {IS_PRODUCTION} | Tipo: {type(IS_PRODUCTION)}")
     print("=" * 50)
 
-
 if __name__ == "__main__":
     main()
-    
+
