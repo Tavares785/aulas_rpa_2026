@@ -1,7 +1,18 @@
-idade=int(input("Qual a sua idade: "))
-if idade >=18 and idade <=60 :
-    print("vc é um adulto")
-elif idade < 18:
-    print("vc é uma crianca")
-else:
-    print("vc é um idoso")
+transacoes = [150.0, 3200.5, 12500.0, 450.0, -50.0, 800.0, 0]
+
+for transacao in transacoes:
+    if transacao > 10000.00:
+        print(
+            f"[ALERTA] Transação suspeita de R$ {transacao:.2f}: "
+            "Encaminhada para auditoria."
+        )
+        continue
+
+    if transacao <= 0:
+        print(
+            f"[ERRO CRÍTICO] Transação inválida encontrada (R$ {transacao:.2f}). "
+            "Interrompendo bot..."
+        )
+        break
+
+    print(f"[SUCESSO] Transação de R$ {transacao:.2f} processada.")

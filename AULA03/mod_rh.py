@@ -1,0 +1,20 @@
+def cadastrar_colaborador(nome: str, cargo: str, salario: float) -> dict:
+    colaborador = {
+        "nome": nome,
+        "cargo": cargo,
+        "salario": salario
+    }
+
+    return colaborador
+
+
+def exibir_colaboradores(lista_colaboradores: list) -> None:
+    if len(lista_colaboradores) == 0:
+        print("Nenhum colaborador cadastrado.")
+        return
+
+    for colaborador in lista_colaboradores:
+        print(f"Nome: {colaborador['nome']}")
+        print(f"Cargo: {colaborador['cargo']}")
+        print(f"Salário: R$ {colaborador['salario']:.2f}")
+        print("-" * 25)

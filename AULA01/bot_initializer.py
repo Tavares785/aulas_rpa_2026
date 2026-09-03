@@ -1,30 +1,20 @@
+BOT_NAME = "RPA_FINANCEIRO_01"
+MAX_RETRIES = 3
+EXECUTION_TIMEOUT = 60.0
+IS_PRODUCTION = False
 
 
+def main():
+    """Exibe as configurações usadas na inicialização do robô."""
+    print("=" * 50)
+    print("INICIALIZAÇÃO DO ROBÔ")
+    print("=" * 50)
+    print(f"BOT_NAME: {BOT_NAME!r} | Tipo: {type(BOT_NAME)}")
+    print(f"MAX_RETRIES: {MAX_RETRIES} | Tipo: {type(MAX_RETRIES)}")
+    print(f"EXECUTION_TIMEOUT: {EXECUTION_TIMEOUT} | Tipo: {type(EXECUTION_TIMEOUT)}")
+    print(f"IS_PRODUCTION: {IS_PRODUCTION} | Tipo: {type(IS_PRODUCTION)}")
+    print("=" * 50)
 
 
-# git status 
-# git add
-# git commit -m "RESPOSTA"
-# git push
-
-bot_name = "RPA_FINANCEIRO_01"
-max_retries = 3
-execution_timeout = 30.5
-is_production = False
-print()
-print("=========================\n")
-print("Inicicializacao do Robo\n")
-print("=========================\n")
-print()
-print(f"Nome: {bot_name} ")
-print(f"Tipo: {type(bot_name)}")
-print()
-print(f"Total de tentativas: {max_retries}")
-print(f"Tipo: {type(max_retries)}")
-print()
-print(f"Timeout: {execution_timeout}")
-print(f"tipo: {type(execution_timeout)}")
-print()
-print(f"Producao: {is_production}")
-print(f"Tipo: {type(is_production)}")
-print()
+if __name__ == "__main__":
+    main()
