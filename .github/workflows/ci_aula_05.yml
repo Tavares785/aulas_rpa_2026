@@ -1,0 +1,60 @@
+name: CI - Aula 05 (Avaliação de Processo RPA)
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - "AULA05/**"
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ "master" ]
+    paths:
+      - "AULA05/**"
+
+jobs:
+  validar_aula05:
+    name: Validar Documento AVALIACAO_PROCESSO.md
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Verificar existência do AVALIACAO_PROCESSO.md
+        run: |
+          if [ ! -f "AULA05/AVALIACAO_PROCESSO.md" ]; then
+            echo "❌ AULA05/AVALIACAO_PROCESSO.md não encontrado."
+            exit 1
+          fi
+          echo "✔ Arquivo encontrado."
+
+      - name: Verificar se não está vazio
+        run: |
+          if [ ! -s "AULA05/AVALIACAO_PROCESSO.md" ]; then
+            echo "❌ AVALIACAO_PROCESSO.md está vazio."
+            exit 1
+          fi
+          echo "✔ Arquivo não está vazio."
+
+      - name: Verificar título Markdown (linha com '#')
+        run: |
+          if ! grep -qP '^#' "AULA05/AVALIACAO_PROCESSO.md"; then
+            echo "❌ Documento não contém título Markdown (linha iniciada com '#')."
+            exit 1
+          fi
+          echo "✔ Título Markdown encontrado."
+
+      - name: Verificar conteúdo mínimo (>= 5 linhas)
+        run: |
+          LINE_COUNT=$(wc -l < "AULA05/AVALIACAO_PROCESSO.md")
+          if [ "$LINE_COUNT" -lt 5 ]; then
+            echo "⚠ Documento possui apenas $LINE_COUNT linhas. Esperado no mínimo 5."
+            exit 1
+          fi
+          echo "✔ Documento possui $LINE_COUNT linhas."
+
+      - name: Resumo
+        run: |
+          echo "=============================="
+          echo "  AULA05 – Validação concluída"
+          echo "=============================="
