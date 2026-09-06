@@ -1,0 +1,66 @@
+name: Guarda - Arquivos Protegidos
+
+# Reprova automaticamente qualquer Pull Request que tente alterar arquivos
+# de infraestrutura da disciplina: testes de correcao, workflows de CI e
+# arquivos de configuracao. Os alunos so devem alterar o codigo dentro das
+# pastas AULAXX/.
+
+"on":
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ "master" ]
+
+jobs:
+  verificar-arquivos-protegidos:
+    name: Verificar arquivos protegidos
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+        with:
+          # Precisamos do historico para comparar a PR com a base.
+          fetch-depth: 0
+
+      - name: Detectar alteracoes em arquivos protegidos
+        shell: bash
+        run: |
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+
+          echo "Comparando alteracoes entre a base ($BASE_SHA) e a PR ($HEAD_SHA)..."
+          echo ""
+
+          # Lista de arquivos alterados nesta PR
+          ARQUIVOS_ALTERADOS="$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")"
+
+          echo "Arquivos alterados nesta PR:"
+          echo "$ARQUIVOS_ALTERADOS"
+          echo ""
+
+          # Padroes de caminhos que os alunos NAO podem alterar.
+          #   tests/                  -> correcao automatica
+          #   .github/                -> workflows de CI
+          #   .flake8                 -> regras de lint
+          #   pytest.ini              -> configuracao de testes
+          #   requirements.txt        -> dependencias
+          PADRAO_PROTEGIDO='^tests/|^\.github/|^\.flake8$|^pytest\.ini$|^requirements\.txt$'
+
+          VIOLACOES="$(echo "$ARQUIVOS_ALTERADOS" | grep -E "$PADRAO_PROTEGIDO" || true)"
+
+          if [ -n "$VIOLACOES" ]; then
+            echo "=================================================================="
+            echo "  PR REPROVADA: alteracao em arquivos protegidos detectada"
+            echo "=================================================================="
+            echo ""
+            echo "Os seguintes arquivos NAO podem ser modificados na entrega:"
+            echo "$VIOLACOES" | sed 's/^/  - /'
+            echo ""
+            echo "Voce so deve alterar arquivos dentro da pasta da aula (AULAXX/)."
+            echo "Reverta as mudancas nos arquivos acima e atualize a PR."
+            echo ""
+            echo "Dica: git checkout origin/master -- <arquivo> para restaurar o original."
+            exit 1
+          fi
+
+          echo "OK: nenhum arquivo protegido foi alterado nesta PR."
