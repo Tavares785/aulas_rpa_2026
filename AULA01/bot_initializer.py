@@ -1,11 +1,13 @@
-﻿# Configuração de variáveis do Bot - Lab 01
-BOT_NAME = "RPA_FINANCEIRO_01"
-MAX_RETRIES = 3
-EXECUTION_TIMEOUT = 30.0
-IS_PRODUCTION = False
+﻿# 1. Declaração e inicialização das variáveis
+BOT_NAME = "BOT_KAUA_01"
+MAX_RETRIES = 5
+EXECUTION_TIMEOUT = 120.5
+IS_PRODUCTION = True
 
-# Exibição dos valores e suas tipagens para o CI do professor
-print(f"BOT_NAME: {BOT_NAME} | Tipo: {type(BOT_NAME)}")
-print(f"MAX_RETRIES: {MAX_RETRIES} | Tipo: {type(MAX_RETRIES)}")
-print(f"EXECUTION_TIMEOUT: {EXECUTION_TIMEOUT} | Tipo: {type(EXECUTION_TIMEOUT)}")
-print(f"IS_PRODUCTION: {IS_PRODUCTION} | Tipo: {type(IS_PRODUCTION)}")
+# 2. Impressão da mensagem formatada e tipagem usando type()
+print("=== SETUP DO AMBIENTE DO ROBÔ ===")
+print(f"Nome do Bot: {BOT_NAME} | Tipo: {type(BOT_NAME)}")
+print(f"Tentativas Máximas: {MAX_RETRIES} | Tipo: {type(MAX_RETRIES)}")
+print(f"Tempo Limite (seg): {EXECUTION_TIMEOUT} | Tipo: {type(EXECUTION_TIMEOUT)}")
+print(f"Ambiente de Produção: {IS_PRODUCTION} | Tipo: {type(IS_PRODUCTION)}")
+print("=================================")
