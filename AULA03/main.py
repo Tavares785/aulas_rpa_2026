@@ -1,8 +1,9 @@
 import mod_rh as rh
 
+
 colaboradores = []
 while True:
-   
+
     print("Escolha uma opção:")
     print("1 - Cadastrar")
     print("2 - Listar")
@@ -12,13 +13,13 @@ while True:
         opcao = int(input("Escolha uma opção: "))
     except ValueError:
         print("Digite apenas as opção do menu !")
-        print("-"*60)
+        print("-" * 60)
         continue
 
     print("-"*60)
     if opcao == 0:
         break
-    elif opcao ==1:
+    elif opcao == 1:
         nome = input("Digite o nome do colaborador: ")
         cargo = input("Digite o nome do cargo: ")
         while True:
@@ -36,6 +37,3 @@ while True:
         print("-"*60)
     else:
         print("Opção Inválida !")
-        
-    
-    
