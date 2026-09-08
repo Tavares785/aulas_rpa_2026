@@ -9,12 +9,10 @@ try:
 except ImportError:
     pass
 
-
 def executar_auditoria(arquivo_entrada, arquivo_saida):
     print("=== AULA 04: EXECUTANDO BOT COM AUDITORIA E EXCEÇÕES ===")
     
     try:
-        # 1. Tenta carregar os dados via CSV
         transacoes = carregar_transacoes(arquivo_entrada)
         resultados = []
 
@@ -29,7 +27,6 @@ def executar_auditoria(arquivo_entrada, arquivo_saida):
             })
             print(f"[LOG] ID {item['id']}: R$ {valor} -> Status: {status_final}")
 
-        # 2. Persistência: Grava o relatório de saída
         colunas = ["id", "valor", "status_final"]
         with open(arquivo_saida, mode="w", newline="", encoding="utf-8") as arq_out:
             escritor = csv.DictWriter(arq_out, fieldnames=colunas)
@@ -43,6 +40,8 @@ def executar_auditoria(arquivo_entrada, arquivo_saida):
     except Exception as e:
         print(f"[FALHA INESPERADA] Ocorreu um erro durante a execução: {e}")
 
-
 if __name__ == "__main__":
-    executar_auditoria("../AULA03/dados_transacoes.csv", "relatorio_auditoria.csv")
+    raiz = Path(__file__).parent.parent
+    caminho_in = raiz / "dados csv" / "dados_transacoes.csv"
+    caminho_out = Path(__file__).parent / "relatorio_auditoria.csv"
+    executar_auditoria(caminho_in, caminho_out)

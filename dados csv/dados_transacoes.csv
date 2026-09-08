@@ -1,0 +1,6 @@
+﻿id,transacao,status
+1,150.0,pendente
+2,3200.5,pendente
+3,12500.0,suspeita
+4,450.0,pendente
+5,-50.0,erro
