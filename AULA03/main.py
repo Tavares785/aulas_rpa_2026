@@ -1,4 +1,4 @@
-from colaboradores import cadastrar_colaborador, exibir_colaboradores
+from mod_rh import cadastrar_colaborador, exibir_colaboradores
 
 def main():
     lista_colaboradores = []
@@ -16,7 +16,6 @@ def main():
             nome = input("Digite o nome: ")
             cargo = input("Digite o cargo: ")
             
-            # Tratamento simples para garantir que o salário seja um número válido
             try:
                 salario = float(input("Digite o salário: R$ "))
             except ValueError:
@@ -34,7 +33,7 @@ def main():
             else:
                 exibir_colaboradores(lista_colaboradores)
                 
-        elif opcao == "0":
+        elif opcao == "0":  # Espaço corrigido aqui
             print("Saindo do programa. Até mais!")
             break
         else:
