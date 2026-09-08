@@ -12,3 +12,4 @@ def exibir_colaboradores(lista_colaboradores: list) -> None:
         print(f"Cargo: {colaborador['cargo']}")
         print(f"Salário: R$ {colaborador['salario']:.2f}")
         print("-" * 30)
+        
