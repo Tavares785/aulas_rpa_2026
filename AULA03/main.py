@@ -14,7 +14,7 @@ while True:
     elif opcao == '2':
         mod_rh.exibir_colaboradores(colaboradores)  
 
-    elif opcao == '3':
+    elif opcao == "3":
         print('\033[32mSaindo do programa...\033[0m')
         break
     else:
