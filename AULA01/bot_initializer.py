@@ -1,3 +1,4 @@
+
 BOT_NAME = "RPA_FINANCEIRO_01"
 MAX_RETRIES = 3
 EXECUTION_TIMEOUT = 60.0
@@ -16,4 +17,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
