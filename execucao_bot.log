@@ -1,0 +1,22 @@
+2026-09-09 00:18:22,965 - ERROR - Arquivo no caminho dados.csv não encontrado.
+2026-09-09 00:18:22,965 - INFO - Terminado o processamento do arquivo: dados.csv
+2026-09-09 00:20:06,288 - INFO - Processando linha: nome;idade;endereco;telefone
+2026-09-09 00:20:06,288 - INFO - Processando linha: João;25;Rua A, 123;1234-5678
+2026-09-09 00:20:06,288 - INFO - Processando linha: Maria;30;Rua B, 456;2345-6789
+2026-09-09 00:20:06,288 - INFO - Processando linha: Gustavo;28;Rua C, 789;3456-7890
+2026-09-09 00:20:06,288 - INFO - Processando linha: Luiz;35;Rua D, 101;4567-8901
+2026-09-09 00:20:06,288 - INFO - Terminado o processamento do arquivo: EXEMPLOS/arquivos/dados.csv
+2026-09-09 00:22:34,419 - INFO - Processando linha: nome;idade;endereco;telefone
+2026-09-09 00:22:34,419 - INFO - Processando linha: João;25;Rua A, 123;1234-5678
+2026-09-09 00:22:34,420 - INFO - Processando linha: Maria;30;Rua B, 456;2345-6789
+2026-09-09 00:22:34,420 - INFO - Processando linha: Gustavo;28;Rua C, 789;3456-7890
+2026-09-09 00:22:34,420 - INFO - Processando linha: Luiz;35;Rua D, 101;4567-8901
+2026-09-09 00:22:34,420 - INFO - Terminado o processamento do arquivo: EXEMPLOS/arquivos/dados.csv
+2026-09-09 00:26:30,075 - ERROR - Arquivo no caminho EXEMPLOS/arquivos/dads.csv não encontrado.
+2026-09-09 00:26:30,075 - INFO - Terminado o processamento do arquivo: EXEMPLOS/arquivos/dads.csv
+2026-09-09 00:26:52,242 - INFO - Processando linha: nome;idade;endereco;telefone
+2026-09-09 00:26:52,243 - INFO - Processando linha: João;25;Rua A, 123;1234-5678
+2026-09-09 00:26:52,243 - INFO - Processando linha: Maria;30;Rua B, 456;2345-6789
+2026-09-09 00:26:52,243 - INFO - Processando linha: Gustavo;28;Rua C, 789;3456-7890
+2026-09-09 00:26:52,243 - INFO - Processando linha: Luiz;35;Rua D, 101;4567-8901
+2026-09-09 00:26:52,243 - INFO - Terminado o processamento do arquivo: EXEMPLOS/arquivos/dados.csv
