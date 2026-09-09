@@ -1,5 +1,3 @@
-# lab-02
-
 transacoes = [150.0, 3200.5, 12500.0, 450.0, -50.0, 800.0, 0]
 
 for valor in transacoes:
