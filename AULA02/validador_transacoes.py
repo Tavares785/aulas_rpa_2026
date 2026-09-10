@@ -8,4 +8,3 @@ for transacao in transacoes:
         break
     else:
         print(f"[SUCESSO] Transação de R$ {transacao} processada.")
-        
