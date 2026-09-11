@@ -1,0 +1,7 @@
+/**/*_resp.md
+.venv/
+.kiro/
+.pytest_cache/
+/**/__pycache__/
+
+lab-professor/

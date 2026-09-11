@@ -1,0 +1,60 @@
+name: CI - Aula 08 (Selenium – Login Bot)
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - "AULA08/**"
+      - "tests/test_aula08.py"
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ "master" ]
+    paths:
+      - "AULA08/**"
+      - "tests/test_aula08.py"
+
+jobs:
+  validar_aula08:
+    name: Lint e Testes – AULA08
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest selenium webdriver-manager
+
+      - name: Verificar existência do script
+        run: |
+          if [ ! -f "AULA08/bot_web_login.py" ]; then
+            echo "❌ AULA08/bot_web_login.py não encontrado."
+            exit 1
+          fi
+
+      - name: Validar Sintaxe (flake8) – AULA08
+        run: |
+          flake8 AULA08/ --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Avaliar PEP8 – AULA08
+        run: |
+          flake8 AULA08/ --count --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Verificar Sintaxe Python (py_compile)
+        run: |
+          python -m py_compile AULA08/bot_web_login.py
+
+      - name: Executar Testes Estruturais
+        run: |
+          if [ -f "tests/test_aula08.py" ]; then
+            pytest tests/test_aula08.py -v
+          else
+            echo "⚠ Testes não encontrados – apenas lint executado."
+          fi
