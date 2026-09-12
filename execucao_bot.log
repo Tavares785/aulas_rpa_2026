@@ -1,0 +1,24 @@
+11/09/2026 21:32:15 - ERROR - Arquivo não encontrado: /caminho/inexistente/fake.csv
+11/09/2026 21:32:15 - INFO - Tentativa de processamento encerrada para: /caminho/inexistente/fake.csv
+11/09/2026 21:32:15 - INFO - Linha lida: nome,valor
+11/09/2026 21:32:15 - INFO - Linha lida: Item A,100
+11/09/2026 21:32:15 - INFO - Linha lida: Item B,200
+11/09/2026 21:32:15 - INFO - Tentativa de processamento encerrada para: C:\Users\rl371\AppData\Local\Temp\tmpdl_9ojjo.csv
+11/09/2026 21:34:10 - ERROR - Arquivo não encontrado: /caminho/inexistente/fake.csv
+11/09/2026 21:34:10 - INFO - Tentativa de processamento encerrada para: /caminho/inexistente/fake.csv
+11/09/2026 21:34:10 - INFO - Linha lida: nome,valor
+11/09/2026 21:34:10 - INFO - Linha lida: Item A,100
+11/09/2026 21:34:10 - INFO - Linha lida: Item B,200
+11/09/2026 21:34:10 - INFO - Tentativa de processamento encerrada para: C:\Users\rl371\AppData\Local\Temp\tmpj1wcjf9t.csv
+11/09/2026 21:35:40 - ERROR - Arquivo não encontrado: /caminho/inexistente/fake.csv
+11/09/2026 21:35:40 - INFO - Tentativa de processamento encerrada para: /caminho/inexistente/fake.csv
+11/09/2026 21:35:40 - INFO - Linha lida: nome,valor
+11/09/2026 21:35:40 - INFO - Linha lida: Item A,100
+11/09/2026 21:35:40 - INFO - Linha lida: Item B,200
+11/09/2026 21:35:40 - INFO - Tentativa de processamento encerrada para: C:\Users\rl371\AppData\Local\Temp\tmpk9p5e3b3.csv
+11/09/2026 21:36:00 - ERROR - Arquivo não encontrado: /caminho/inexistente/fake.csv
+11/09/2026 21:36:00 - INFO - Tentativa de processamento encerrada para: /caminho/inexistente/fake.csv
+11/09/2026 21:36:00 - INFO - Linha lida: nome,valor
+11/09/2026 21:36:00 - INFO - Linha lida: Item A,100
+11/09/2026 21:36:00 - INFO - Linha lida: Item B,200
+11/09/2026 21:36:00 - INFO - Tentativa de processamento encerrada para: C:\Users\rl371\AppData\Local\Temp\tmplcg2r1lt.csv
