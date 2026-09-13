@@ -1,0 +1,50 @@
+name: CI - Aula 01 (Variáveis e Tipagem)
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - "AULA01/**"
+      - "tests/test_bot_initializer.py"
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ "master" ]
+    paths:
+      - "AULA01/**"
+      - "tests/test_bot_initializer.py"
+
+jobs:
+  validar_aula01:
+    name: Lint e Testes – AULA01
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ "3.10", "3.11" ]
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-${{ matrix.python-version }}-
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Executar Testes – bot_initializer.py
+        run: |
+          pytest tests/test_bot_initializer.py -v
