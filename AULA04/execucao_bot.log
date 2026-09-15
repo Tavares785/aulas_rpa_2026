@@ -1,0 +1,12 @@
+2026-09-15 20:11:47,519 - INFO - Linha lida: nome,idade
+2026-09-15 20:11:47,520 - INFO - Linha lida: Maria,10
+2026-09-15 20:11:47,520 - INFO - Linha lida: Julia,20
+2026-09-15 20:11:47,521 - INFO - Linha lida: Mario,14
+2026-09-15 20:11:47,521 - INFO - Linha lida: Ana,5
+2026-09-15 20:11:47,521 - INFO - Término da tentativa de processamento.
+2026-09-15 20:22:00,869 - INFO - Linha lida: nome,idade
+2026-09-15 20:22:00,870 - INFO - Linha lida: Maria,10
+2026-09-15 20:22:00,870 - INFO - Linha lida: Julia,20
+2026-09-15 20:22:00,871 - INFO - Linha lida: Mario,14
+2026-09-15 20:22:00,871 - INFO - Linha lida: Ana,5
+2026-09-15 20:22:00,872 - INFO - Término da tentativa de processamento.
