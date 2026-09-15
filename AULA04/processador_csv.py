@@ -1,27 +1,33 @@
 import logging
+import pathlib
 
-# Configuração do logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("execucao_bot.log"),
-        logging.StreamHandler()
-    ]
-)
+# Configurar o logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-def processar_arquivo(caminho: str):
+
+def processar_arquivo(caminho):
+    """
+    Processa um arquivo CSV, registrando as operações no log.
+    
+    Args:
+        caminho: Caminho para o arquivo CSV a processar
+    """
     try:
-        arquivo = open(caminho, "r")
-        linhas = arquivo.readlines()
-        for linha in linhas:
-            logging.info(f"Linha lida: {linha.strip()}")
-        arquivo.close()
+        arquivo = pathlib.Path(caminho)
+        
+        if not arquivo.exists():
+            logger.warning(f"Arquivo não encontrado: {caminho}")
+            return
+        
+        logger.info(f"Iniciando processamento do arquivo: {caminho}")
+        
+        with open(arquivo, 'r', encoding='utf-8') as f:
+            linhas = f.readlines()
+            logger.info(f"Arquivo processado com sucesso. Total de linhas: {len(linhas)}")
+            
     except FileNotFoundError:
-        logging.error(f"Arquivo não encontrado: {caminho}")
-    finally:
-        logging.info("Tentativa de processamento finalizada.")
-
-
-# Exemplo de uso
-processar_arquivo("dados.csv")
+        logger.error(f"Erro ao acessar arquivo: {caminho}")
+        # Não relança a exceção - trata internamente
+    except Exception as e:
+        logger.error(f"Erro ao processar arquivo: {e}")
