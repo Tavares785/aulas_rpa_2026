@@ -1,38 +1,69 @@
-import logging
+"""
+Processador de CSV com tratamento de exceções e logging.
 
+Este módulo implementa leitura resiliente de arquivos CSV com:
+- Tratamento de exceções (FileNotFoundError)
+- Logging estruturado em arquivo e console
+- Rastreamento de execução do bot
+"""
+
+import logging
+import os
+
+# Configurar logging
+log_file = "execucao_bot.log"
+log_format = "%(asctime)s - %(levelname)s - %(message)s"
+date_format = "%d/%m/%Y %H:%M:%S"
+
+# Handler para arquivo
+file_handler = logging.FileHandler(log_file, encoding='utf-8')
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter(log_format, datefmt=date_format))
+
+# Handler para console
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+console_handler.setFormatter(logging.Formatter(log_format, datefmt=date_format))
+
+# Configurar logger
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[
-        logging.FileHandler("execucao_bot.log", encoding="utf-8"),
-        logging.StreamHandler(),
-    ],
+    handlers=[file_handler, console_handler]
 )
 
 logger = logging.getLogger(__name__)
 
 
-def processar_arquivo(caminho: str) -> None:
-  
-    logger.info("Iniciando processamento do arquivo: %s", caminho)
-
+def processar_arquivo(caminho: str):
+    """
+    Processa um arquivo CSV com tratamento de exceções e logging.
+    
+    Abre o arquivo especificado, lê suas linhas e registra cada uma em log.
+    Trata exceções de arquivo não encontrado e registra o término da operação.
+    
+    Args:
+        caminho (str): Caminho do arquivo CSV a ser processado
+        
+    Returns:
+        None
+    """
     try:
-        with open(caminho, mode="r", encoding="utf-8") as arquivo:
-            for numero_linha, linha in enumerate(arquivo, start=1):
+        logger.info(f"Iniciando processamento do arquivo: {caminho}")
+        
+        with open(caminho, 'r', encoding='utf-8') as arquivo:
+            linhas = arquivo.readlines()
+            
+            for numero_linha, linha in enumerate(linhas, start=1):
                 conteudo = linha.strip()
-                logger.info("Linha %d lida: %s", numero_linha, conteudo)
-
+                logger.info(f"Linha {numero_linha}: {conteudo}")
+            
+            logger.info(f"Total de {len(linhas)} linhas processadas do arquivo {caminho}")
+    
     except FileNotFoundError:
-        logger.error("Arquivo não encontrado: %s", caminho)
-
-    except Exception as erro:
-        logger.error("Erro inesperado ao processar '%s': %s", caminho, erro)
-
+        logger.error(f"Arquivo não encontrado: {caminho}")
+    
+    except Exception as e:
+        logger.error(f"Erro ao processar arquivo {caminho}: {type(e).__name__} - {e}")
+    
     finally:
-        logger.info("Tentativa de processamento do arquivo '%s' finalizada.", caminho)
-
-
-if __name__ == "__main__":
-    processar_arquivo("dados.csv")
-    processar_arquivo("arquivo_que_nao_existe.csv")
+        logger.info(f"Término da tentativa de processamento do arquivo: {caminho}")
