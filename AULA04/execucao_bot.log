@@ -1,0 +1,31 @@
+2026-09-15 20:16:02 - INFO - Iniciando a tentativa de processamento do arquivo: dados_inexistentes.csv
+2026-09-15 20:16:02 - ERROR - Erro: O arquivo n√£o foi encontrado no caminho: dados_inexistentes.csv
+2026-09-15 20:16:02 - INFO - Processamento encerrado (tentativa conclu√≠da).
+2026-09-15 20:16:56 - INFO - Iniciando a tentativa de processamento do arquivo: dados_inexistentes.csv
+2026-09-15 20:16:56 - ERROR - Erro: O arquivo n√£o foi encontrado no caminho: dados_inexistentes.csv
+2026-09-15 20:16:56 - INFO - Processamento encerrado (tentativa conclu√≠da).
+2026-09-15 20:18:02 - INFO - Iniciando a tentativa de processamento do arquivo: dados_inexistentes.csv
+2026-09-15 20:18:02 - ERROR - Erro: O arquivo n√£o foi encontrado no caminho: dados_inexistentes.csv
+2026-09-15 20:18:02 - INFO - Processamento encerrado (tentativa conclu√≠da).
+2026-09-15 20:18:39 - INFO - Iniciando a tentativa de processamento do arquivo: dados_inexistentes.csv
+2026-09-15 20:18:39 - ERROR - Erro: O arquivo n√£o foi encontrado no caminho: dados_inexistentes.csv
+2026-09-15 20:18:39 - INFO - Processamento encerrado (tentativa conclu√≠da).
+2026-09-15 20:45:28,477 - ERROR - Arquivo n„o encontrado: clientes.csv
+2026-09-15 20:45:28,493 - INFO - TÈrmino da tentativa de processamento.
+2026-09-15 20:46:16,400 - ERROR - Arquivo n„o encontrado: cliente.csv
+2026-09-15 20:46:16,400 - INFO - TÈrmino da tentativa de processamento.
+2026-09-15 20:46:47,666 - ERROR - Arquivo n„o encontrado: cliente.csv
+2026-09-15 20:46:47,666 - INFO - TÈrmino da tentativa de processamento.
+2026-09-15 20:47:15,059 - ERROR - Arquivo n„o encontrado: cliente.csv
+2026-09-15 20:47:15,060 - INFO - TÈrmino da tentativa de processamento.
+2026-09-15 20:48:25,178 - ERROR - Arquivo n„o encontrado: cliente.csv
+2026-09-15 20:48:25,179 - INFO - TÈrmino da tentativa de processamento.
+2026-09-15 20:58:56,450 - ERROR - Arquivo n„o encontrado: cliente.csv
+2026-09-15 20:58:56,462 - INFO - TÈrmino da tentativa de processamento.
+2026-09-15 21:08:20,689 - INFO - Linha lida: nome,idade
+2026-09-15 21:08:20,703 - INFO - Linha lida: Serjio,35
+2026-09-15 21:08:20,703 - INFO - Linha lida: Clodoaldo,43
+2026-09-15 21:08:20,703 - INFO - Linha lida: Jabulaine,23
+2026-09-15 21:08:20,703 - INFO - Linha lida: Xerolaine,12
+2026-09-15 21:08:20,704 - INFO - Linha lida: Carimbo,43
+2026-09-15 21:08:20,704 - INFO - TÈrmino da tentativa de processamento.
