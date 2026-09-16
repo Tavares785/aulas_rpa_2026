@@ -39,7 +39,7 @@ Crie um script `validador_transacoes.py` que:
    ```
 3. Suba a branch para o **seu fork**:
    ```bash
-   git push origin lab02/SEU_RA
+   origin lab02/SEUgit push_RA
    ```
 4. No GitHub, abra um **Pull Request** do seu fork para o repositório do professor (`main`) com o título:
    ```
