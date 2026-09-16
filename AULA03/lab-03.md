@@ -30,7 +30,7 @@ Um sistema de RH necessita de uma automação que cadastre colaboradores em mem�
    ```
 2. Adicione e commite seus arquivos:
    ```bash
-   git add .
+   git add .s
    git commit -m "lab03: entrega RA SEU_RA"
    ```
 3. Suba a branch para o **seu fork**:
