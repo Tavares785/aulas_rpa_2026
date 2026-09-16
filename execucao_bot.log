@@ -1,0 +1,48 @@
+2026-09-09 19:45:24,492 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: dados_inexistentes.csv
+2026-09-09 19:45:24,493 - BotResiliente - ERROR - Erro crítico: O arquivo especificado não foi encontrado no caminho 'dados_inexistentes.csv'. Detalhes: [Errno 2] No such file or directory: 'dados_inexistentes.csv'
+2026-09-09 19:45:24,494 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: dados_inexistentes.csv
+2026-09-09 19:45:24,496 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: clientes_teste.csv
+2026-09-09 19:45:24,497 - BotResiliente - INFO - Linha 1 processada com sucesso: ['ID', 'Nome', 'Status']
+2026-09-09 19:45:24,498 - BotResiliente - INFO - Linha 2 processada com sucesso: ['001', 'Ana Silva', 'Ativo']
+2026-09-09 19:45:24,499 - BotResiliente - INFO - Linha 3 processada com sucesso: ['002', 'Bruno Costa', 'Pendente']
+2026-09-09 19:45:24,500 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: clientes_teste.csv
+2026-09-09 19:46:41,965 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:46:41,967 - BotResiliente - ERROR - Erro crítico: O arquivo especificado não foi encontrado no caminho '/caminho/inexistente/fake.csv'. Detalhes: [Errno 2] No such file or directory: '/caminho/inexistente/fake.csv'
+2026-09-09 19:46:41,967 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:46:41,970 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: C:\Users\gabri\AppData\Local\Temp\tmp01riz9jj.csv
+2026-09-09 19:46:41,971 - BotResiliente - INFO - Linha 1 processada com sucesso: ['nome', 'valor']
+2026-09-09 19:46:41,971 - BotResiliente - INFO - Linha 2 processada com sucesso: ['Item A', '100']
+2026-09-09 19:46:41,971 - BotResiliente - INFO - Linha 3 processada com sucesso: ['Item B', '200']
+2026-09-09 19:46:41,971 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: C:\Users\gabri\AppData\Local\Temp\tmp01riz9jj.csv
+2026-09-09 19:47:54,944 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:47:54,945 - BotResiliente - ERROR - Erro crítico: O arquivo especificado não foi encontrado no caminho '/caminho/inexistente/fake.csv'. Detalhes: [Errno 2] No such file or directory: '/caminho/inexistente/fake.csv'
+2026-09-09 19:47:54,945 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:47:54,948 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: C:\Users\gabri\AppData\Local\Temp\tmpszzuosrn.csv
+2026-09-09 19:47:54,948 - BotResiliente - INFO - Linha 1 processada com sucesso: ['nome', 'valor']
+2026-09-09 19:47:54,949 - BotResiliente - INFO - Linha 2 processada com sucesso: ['Item A', '100']
+2026-09-09 19:47:54,949 - BotResiliente - INFO - Linha 3 processada com sucesso: ['Item B', '200']
+2026-09-09 19:47:54,949 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: C:\Users\gabri\AppData\Local\Temp\tmpszzuosrn.csv
+2026-09-09 19:49:42,516 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:49:42,517 - BotResiliente - ERROR - Erro crítico: O arquivo especificado não foi encontrado no caminho '/caminho/inexistente/fake.csv'. Detalhes: [Errno 2] No such file or directory: '/caminho/inexistente/fake.csv'
+2026-09-09 19:49:42,517 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:49:42,522 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: C:\Users\gabri\AppData\Local\Temp\tmpdgtvz_lh.csv
+2026-09-09 19:49:42,522 - BotResiliente - INFO - Linha 1 processada com sucesso: ['nome', 'valor']
+2026-09-09 19:49:42,523 - BotResiliente - INFO - Linha 2 processada com sucesso: ['Item A', '100']
+2026-09-09 19:49:42,523 - BotResiliente - INFO - Linha 3 processada com sucesso: ['Item B', '200']
+2026-09-09 19:49:42,523 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: C:\Users\gabri\AppData\Local\Temp\tmpdgtvz_lh.csv
+2026-09-09 19:50:36,928 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:50:36,929 - BotResiliente - ERROR - Erro crítico: O arquivo especificado não foi encontrado no caminho '/caminho/inexistente/fake.csv'. Detalhes: [Errno 2] No such file or directory: '/caminho/inexistente/fake.csv'
+2026-09-09 19:50:36,929 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:50:36,934 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: C:\Users\gabri\AppData\Local\Temp\tmp5vfa3dmv.csv
+2026-09-09 19:50:36,935 - BotResiliente - INFO - Linha 1 processada com sucesso: ['nome', 'valor']
+2026-09-09 19:50:36,936 - BotResiliente - INFO - Linha 2 processada com sucesso: ['Item A', '100']
+2026-09-09 19:50:36,937 - BotResiliente - INFO - Linha 3 processada com sucesso: ['Item B', '200']
+2026-09-09 19:50:36,938 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: C:\Users\gabri\AppData\Local\Temp\tmp5vfa3dmv.csv
+2026-09-09 19:51:17,648 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:51:17,650 - BotResiliente - ERROR - Erro crítico: O arquivo especificado não foi encontrado no caminho '/caminho/inexistente/fake.csv'. Detalhes: [Errno 2] No such file or directory: '/caminho/inexistente/fake.csv'
+2026-09-09 19:51:17,651 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: /caminho/inexistente/fake.csv
+2026-09-09 19:51:17,654 - BotResiliente - INFO - Iniciando tentativa de processamento do arquivo: C:\Users\gabri\AppData\Local\Temp\tmppxofq631.csv
+2026-09-09 19:51:17,654 - BotResiliente - INFO - Linha 1 processada com sucesso: ['nome', 'valor']
+2026-09-09 19:51:17,655 - BotResiliente - INFO - Linha 2 processada com sucesso: ['Item A', '100']
+2026-09-09 19:51:17,655 - BotResiliente - INFO - Linha 3 processada com sucesso: ['Item B', '200']
+2026-09-09 19:51:17,655 - BotResiliente - INFO - Fim da tentativa de processamento para o arquivo: C:\Users\gabri\AppData\Local\Temp\tmppxofq631.csv
