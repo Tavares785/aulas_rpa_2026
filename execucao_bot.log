@@ -1,0 +1,26 @@
+Linha lida: nomeidadeenderecotelefone
+Linha lida: João25Rua A, 1231234-5678
+Linha lida: Maria30Rua B, 4562345-6789
+Linha lida: Gustavo28Rua C, 7893456-7890
+Linha lida: Luiz35Rua D, 1014567-8901
+Fim do processamento.
+Linha lida: nomeidadeenderecotelefone
+Linha lida: João25Rua A, 1231234-5678
+Linha lida: Maria30Rua B, 4562345-6789
+Linha lida: Gustavo28Rua C, 7893456-7890
+Linha lida: Luiz35Rua D, 1014567-8901
+Fim do processamento.
+Arquivo EXEMPLOS/arquivo_inexistente.txt n�o encontrado.
+Fim do processamento.
+Linha lida: nomeidadeenderecotelefone
+Linha lida: João25Rua A, 1231234-5678
+Linha lida: Maria30Rua B, 4562345-6789
+Linha lida: Gustavo28Rua C, 7893456-7890
+Linha lida: Luiz35Rua D, 1014567-8901
+Fim do processamento.
+Linha lida: nome    idade    endereco    telefone
+Linha lida: João     25        Rua A     1231234-5678
+Linha lida: Maria    30        Rua B     4562345-6789
+Linha lida: Gustavo  28        Rua C     7893456-7890
+Linha lida: Luiz     35        Rua D     1014567-8901
+Fim do processamento.
