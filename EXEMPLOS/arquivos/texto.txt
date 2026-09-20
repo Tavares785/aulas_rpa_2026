@@ -1,0 +1,5 @@
+nomeidadeenderecotelefone
+João25Rua A, 1231234-5678
+Maria30Rua B, 4562345-6789
+Gustavo28Rua C, 7893456-7890
+Luiz35Rua D, 1014567-8901
