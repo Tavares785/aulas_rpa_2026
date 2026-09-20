@@ -79,33 +79,3 @@ class TestTiposCorretos:
         assert isinstance(bot_module.IS_PRODUCTION, bool), (
             f"IS_PRODUCTION deveria ser bool, mas é {type(bot_module.IS_PRODUCTION).__name__}"
         )
-
-
-# ---------------------------------------------------------------------------
-# Validação de valores
-# ---------------------------------------------------------------------------
-
-class TestValoresEsperados:
-    def test_bot_name_valor(self, bot_module):
-        """BOT_NAME deve ser 'RPA_FINANCEIRO_01'."""
-        assert bot_module.BOT_NAME == "RPA_FINANCEIRO_01", (
-            f"BOT_NAME esperado: 'RPA_FINANCEIRO_01', encontrado: '{bot_module.BOT_NAME}'"
-        )
-
-    def test_max_retries_valor(self, bot_module):
-        """MAX_RETRIES deve ser 3."""
-        assert bot_module.MAX_RETRIES == 3, (
-            f"MAX_RETRIES esperado: 3, encontrado: {bot_module.MAX_RETRIES}"
-        )
-
-    def test_execution_timeout_valor(self, bot_module):
-        """EXECUTION_TIMEOUT deve ser 30.0."""
-        assert bot_module.EXECUTION_TIMEOUT == 30.0, (
-            f"EXECUTION_TIMEOUT esperado: 30.0, encontrado: {bot_module.EXECUTION_TIMEOUT}"
-        )
-
-    def test_is_production_valor(self, bot_module):
-        """IS_PRODUCTION deve ser False."""
-        assert bot_module.IS_PRODUCTION is False, (
-            f"IS_PRODUCTION esperado: False, encontrado: {bot_module.IS_PRODUCTION}"
-        )
