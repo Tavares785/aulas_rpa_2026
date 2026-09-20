@@ -1,0 +1,18 @@
+[flake8]
+# Comprimento de linha alinhado ao usado nos workflows de CI.
+max-line-length = 127
+max-complexity = 10
+
+# Avisos puramente de formatacao de espaco em branco: nao afetam a execucao
+# do codigo, entao nao devem reprovar a entrega dos alunos.
+#   W291 - espaco em branco no fim da linha
+#   W293 - linha em branco contendo espacos
+#   W391 - linha(s) em branco no fim do arquivo
+extend-ignore = W291, W293, W391
+
+# Pastas que nao precisam ser analisadas.
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    .pytest_cache
