@@ -29,3 +29,4 @@ def processar_arquivo(caminho: str):
         logger.error("Arquivo nao encontrado: %s", caminho)
     finally:
         logger.info("Termino da tentativa de processamento: %s", caminho)
+
