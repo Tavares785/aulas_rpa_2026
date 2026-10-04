@@ -1,0 +1,9 @@
+2026-10-04 13:22:40,067 - INFO - Iniciando tentativa de leitura do arquivo: arquivo_inexistente.csv
+2026-10-04 13:22:40,067 - ERROR - Erro: O arquivo 'arquivo_inexistente.csv' não foi encontrado.
+2026-10-04 13:22:40,067 - INFO - Tentativa de processamento finalizada.
+2026-10-04 13:23:14,147 - INFO - Iniciando tentativa de leitura do arquivo: arquivo_inexistente.csv
+2026-10-04 13:23:14,150 - ERROR - Erro: O arquivo 'arquivo_inexistente.csv' não foi encontrado.
+2026-10-04 13:23:14,150 - INFO - Tentativa de processamento finalizada.
+2026-10-04 13:27:03,116 - INFO - Iniciando tentativa de leitura do arquivo: arquivo_inexistente.csv
+2026-10-04 13:27:03,116 - ERROR - Erro: O arquivo 'arquivo_inexistente.csv' não foi encontrado.
+2026-10-04 13:27:03,116 - INFO - Tentativa de processamento finalizada.
