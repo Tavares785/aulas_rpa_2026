@@ -1,0 +1,5 @@
+nome;idade;endereco;telefone
+João;25;Rua A, 123;1234-5678
+Maria;30;Rua B, 456;2345-6789
+Gustavo;28;Rua C, 789;3456-7890
+Luiz;35;Rua D, 101;4567-8901

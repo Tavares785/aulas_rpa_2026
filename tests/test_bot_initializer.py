@@ -79,3 +79,4 @@ class TestTiposCorretos:
         assert isinstance(bot_module.IS_PRODUCTION, bool), (
             f"IS_PRODUCTION deveria ser bool, mas é {type(bot_module.IS_PRODUCTION).__name__}"
         )
+
