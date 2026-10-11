@@ -1,3 +1,5 @@
 PyYAML
 pytest
 flake8
+pyautogui
+pyperclip
