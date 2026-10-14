@@ -1,0 +1,32 @@
+2026-09-13 11:58:45 | INFO | ============================================================
+2026-09-13 11:58:45 | INFO | Iniciando processamento do arquivo: c:\projetosfacul\aulas_rpa_2026_testejao\EXEMPLOS\arquivos\dados.csv
+2026-09-13 11:58:45 | INFO | Arquivo aberto com sucesso. Total de linhas: 5
+2026-09-13 11:58:45 | INFO | Linha 1: nome;idade;endereco;telefone
+2026-09-13 11:58:45 | INFO | Linha 2: João;25;Rua A, 123;1234-5678
+2026-09-13 11:58:45 | INFO | Linha 3: Maria;30;Rua B, 456;2345-6789
+2026-09-13 11:58:45 | INFO | Linha 4: Gustavo;28;Rua C, 789;3456-7890
+2026-09-13 11:58:45 | INFO | Linha 5: Luiz;35;Rua D, 101;4567-8901
+2026-09-13 11:58:45 | INFO | Processamento concluído. 5 linha(s) lida(s).
+2026-09-13 11:58:45 | INFO | Tentativa de processamento finalizada para: c:\projetosfacul\aulas_rpa_2026_testejao\EXEMPLOS\arquivos\dados.csv
+2026-09-13 11:58:45 | INFO | ============================================================
+2026-09-13 11:58:45 | INFO | ============================================================
+2026-09-13 11:58:45 | INFO | Iniciando processamento do arquivo: /caminho/inexistente/fake.csv
+2026-09-13 11:58:45 | ERROR | Arquivo não encontrado: '/caminho/inexistente/fake.csv'. Verifique se o caminho está correto.
+2026-09-13 11:58:45 | INFO | Tentativa de processamento finalizada para: /caminho/inexistente/fake.csv
+2026-09-13 11:58:45 | INFO | ============================================================
+2026-09-13 12:00:01 | INFO | ============================================================
+2026-09-13 12:00:01 | INFO | Iniciando processamento do arquivo: C:\projetosfacul\aulas_rpa_2026_testejao\EXEMPLOS\arquivos\dados.csv
+2026-09-13 12:00:01 | INFO | Arquivo aberto com sucesso. Total de linhas: 5
+2026-09-13 12:00:01 | INFO | Linha 1: nome;idade;endereco;telefone
+2026-09-13 12:00:01 | INFO | Linha 2: João;25;Rua A, 123;1234-5678
+2026-09-13 12:00:01 | INFO | Linha 3: Maria;30;Rua B, 456;2345-6789
+2026-09-13 12:00:01 | INFO | Linha 4: Gustavo;28;Rua C, 789;3456-7890
+2026-09-13 12:00:01 | INFO | Linha 5: Luiz;35;Rua D, 101;4567-8901
+2026-09-13 12:00:01 | INFO | Processamento concluído. 5 linha(s) lida(s).
+2026-09-13 12:00:01 | INFO | Tentativa de processamento finalizada para: C:\projetosfacul\aulas_rpa_2026_testejao\EXEMPLOS\arquivos\dados.csv
+2026-09-13 12:00:01 | INFO | ============================================================
+2026-09-13 12:00:01 | INFO | ============================================================
+2026-09-13 12:00:01 | INFO | Iniciando processamento do arquivo: /caminho/inexistente/fake.csv
+2026-09-13 12:00:01 | ERROR | Arquivo não encontrado: '/caminho/inexistente/fake.csv'. Verifique se o caminho está correto.
+2026-09-13 12:00:01 | INFO | Tentativa de processamento finalizada para: /caminho/inexistente/fake.csv
+2026-09-13 12:00:01 | INFO | ============================================================
