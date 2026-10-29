@@ -8,7 +8,11 @@ cada produto e exibe o resultado no terminal.
 import time
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import (
+    NoSuchElementException,
+    StaleElementReferenceException,
+    TimeoutException,
+)
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -70,8 +74,11 @@ def texto_do_primeiro(elemento, seletores):
 def localizar_cards(driver):
     """Devolve a lista de cards de produto da pagina."""
     for seletor in SELETORES_CARD:
-        cards = driver.find_elements(By.CSS_SELECTOR, seletor)
-        cards = [c for c in cards if c.find_elements(By.CSS_SELECTOR, "a[href*='/products/']")]
+        try:
+            cards = driver.find_elements(By.CSS_SELECTOR, seletor)
+            cards = [c for c in cards if c.find_elements(By.CSS_SELECTOR, "a[href*='/products/']")]
+        except StaleElementReferenceException:
+            return []
         if cards:
             return cards
     return []
@@ -89,17 +96,8 @@ def rolar_pagina(driver):
         altura = nova_altura
 
 
-def coletar_produtos(driver):
-    """Extrai titulo e preco de cada produto da colecao."""
-    espera = WebDriverWait(driver, TEMPO_ESPERA)
-    espera.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-    try:
-        espera.until(lambda d: len(localizar_cards(d)) > 0)
-    except TimeoutException:
-        return []
-
-    rolar_pagina(driver)
-
+def extrair_produtos(driver):
+    """Le titulo e preco de cada card atualmente na pagina."""
     produtos = []
     vistos = set()
     for card in localizar_cards(driver):
@@ -110,6 +108,29 @@ def coletar_produtos(driver):
         vistos.add(titulo)
         produtos.append({"titulo": titulo, "Preço": preco or "indisponivel"})
     return produtos
+
+
+def coletar_produtos(driver):
+    """Espera a pagina carregar e extrai os produtos (com novas tentativas)."""
+    espera = WebDriverWait(
+        driver, TEMPO_ESPERA, ignored_exceptions=(StaleElementReferenceException,)
+    )
+    espera.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+    try:
+        espera.until(lambda d: len(localizar_cards(d)) > 0)
+    except TimeoutException:
+        return []
+
+    rolar_pagina(driver)
+
+    # O site pode remontar os cards apos a rolagem; tenta de novo se isso ocorrer.
+    for _ in range(5):
+        try:
+            time.sleep(2)
+            return extrair_produtos(driver)
+        except StaleElementReferenceException:
+            continue
+    return []
 
 
 def exibir_produtos(produtos):
