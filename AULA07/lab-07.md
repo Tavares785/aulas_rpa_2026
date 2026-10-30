@@ -37,10 +37,16 @@ Nome;RA;Nota01;TF01;Notao2;TF02
 
 Usaremos o for para iterar sobre cada aluno. O comando pyautogui é nossa melhor estratégia para a automação pedida
 
-## FASE 5: Entrega
+.63   REPROVADO
+100078   7.66  APROVADO
+100079   2.22  REPROVADO36 APROVADO
+100081
+100080   6.## FASE 5: Entrega
 
-1. No **seu repo**, crie um repo Nome_projeto+ SEU_RA ou aula_07 + SEU_RA `(ex: projeto_lancamento_nota_123456`):
-2. Adicione e commite seus arquivos:
+1. No **seu repo**, crie um repo Nome_projeto+ SEU_RA ou aula_07 + SEU_RA `(ex: projeto_lancamento_nota_123456)`:
+2. Adicione e commite seus arquivos:   3.34  REPROVADO
+100082   4.6   REPROVADO
+
    ```bash
    git add .
    git commit -m "lab07: Entrega Projeto Notas"
@@ -50,7 +56,7 @@ Usaremos o for para iterar sobre cada aluno. O comando pyautogui é nossa melhor
    git push origin seu repo
    ```
 4. Preencha o form com as informações solicitadas:
-   https://docs.google.com/forms/d/e/1FAIpQLScobs8AluooQSGYT-wIZSbDl2EseRKzaaTBpG7NjwDeQiENZw/viewform?usp=publish-editor
+   https://docs.google.com/forms/d/e/1FAIpQLScobs8AluooQSGYT-wIZSbDl2EseRKzaaTBpG7NjwDeQiENZw/viewform?usp=publish-editorREPROVA
 5. Aguarde revisão do professor e Nota.
 
 ---
