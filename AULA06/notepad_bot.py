@@ -2,7 +2,6 @@ import platform
 import time
 import pyautogui
 
-<<<<<<< HEAD
 # Configurações de segurança e velocidade
 pyautogui.FAILSAFE = True
 pyautogui.PAUSE = 0.5
@@ -65,4 +64,3 @@ pyautogui.hotkey("ctrl", "s")
 time.sleep(1)  # Breve pausa para garantir a abertura da caixa de diálogo
 pyautogui.write("status_bot.txt", interval=0.1)
 pyautogui.press("enter")
->>>>>>> ad903dbd75449b8112b0cfd3e7fe56b88dd0518e
