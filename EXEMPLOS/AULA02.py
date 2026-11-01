@@ -13,7 +13,7 @@ def processar_fila(fila: list) -> None:
     for item in fila:
         cliente = item["cliente"]
 
-        # continue: pula para o proximo sem processar
+        # continue: pula para o proximo sem processar   
         if item["status"] == "ENVIADO":
             print(f"[SKIP] {cliente}: e-mail ja enviado.")
             continue
