@@ -6,3 +6,10 @@
 
 lab-professor/
 Atividades_em_sala/
+
+#Credenciais
+.env
+.env.v*
+
+#Permitir arquivos de exemplo
+!.env.example
