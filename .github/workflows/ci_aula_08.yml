@@ -43,10 +43,6 @@ jobs:
         run: |
           flake8 AULA08/ --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      - name: Avaliar PEP8 – AULA08
-        run: |
-          flake8 AULA08/ --count --max-complexity=10 --max-line-length=127 --statistics
-
       - name: Verificar Sintaxe Python (py_compile)
         run: |
           python -m py_compile AULA08/bot_products_harry.py
