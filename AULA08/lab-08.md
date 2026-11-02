@@ -15,7 +15,7 @@ Ao contrário da automação Desktop (baseada em imagem ou coordenadas estática
 
 1. Instale a biblioteca `selenium` (o Selenium 4.6+ já baixa o driver do Chrome automaticamente)
 2. Crie o script `bot_products_harry.py`
-3. O bot deve abrir o navegador Chrome no site oficial: `https://www.harrypotter.com/pt/login`
+3. O bot deve abrir o navegador Chrome no site oficial: `https://www.ha orrypotter.com/pt/login`
 5. Navegue até https://harrypottershop.com/collections/gifts/Under-$10
 6. Para cada produto, extraia o **Titulo** e a **Preço** e guarde em uma lista de dicionários, ex.: `{"titulo": ..., "Preço": ...}`
 7. Ao final, exiba no terminal todos os produtos encontrados (Titulo + Preço) e a quantidade total coletada
