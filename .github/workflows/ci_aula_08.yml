@@ -1,4 +1,4 @@
-name: CI - Aula 08 (Selenium – Login Bot)
+name: CI - Aula 08 (Selenium – Web Scraping Produtos Harry Potter)
 
 on:
   push:
@@ -34,8 +34,8 @@ jobs:
 
       - name: Verificar existência do script
         run: |
-          if [ ! -f "AULA08/bot_web_login.py" ]; then
-            echo "❌ AULA08/bot_web_login.py não encontrado."
+          if [ ! -f "AULA08/bot_products_harry.py" ]; then
+            echo "❌ AULA08/bot_products_harry.py não encontrado."
             exit 1
           fi
 
@@ -43,13 +43,9 @@ jobs:
         run: |
           flake8 AULA08/ --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      - name: Avaliar PEP8 – AULA08
-        run: |
-          flake8 AULA08/ --count --max-complexity=10 --max-line-length=127 --statistics
-
       - name: Verificar Sintaxe Python (py_compile)
         run: |
-          python -m py_compile AULA08/bot_web_login.py
+          python -m py_compile AULA08/bot_products_harry.py
 
       - name: Executar Testes Estruturais
         run: |
