@@ -15,10 +15,12 @@ Ao contrário da automação Desktop (baseada em imagem ou coordenadas estática
 
 1. Instale a biblioteca `selenium` (o Selenium 4.6+ já baixa o driver do Chrome automaticamente)
 2. Crie o script `bot_products_harry.py`
-3. O bot deve abrir o navegador Chrome no site oficial: `https://www.harrypotter.com/pt/login`
-5. Navegue até https://harrypottershop.com/collections/gifts/Under-$10
-6. Para cada produto, extraia o **Titulo** e a **Preço** e guarde em uma lista de dicionários, ex.: `{"titulo": ..., "Preço": ...}`
-7. Ao final, exiba no terminal todos os produtos encontrados (Titulo + Preço) e a quantidade total coletada
+3. Nesta adaptação, abra o navegador Chrome em `https://www.cursoemvideo.com/minha-conta/`
+4. Inspecione pelo DOM os rótulos e tipos dos campos de login. Não leia os valores dos campos de volta.
+5. Faça o login na janela do Chrome. O script aguarda a confirmação pelo terminal e não solicita, lê nem armazena as credenciais.
+6. Após confirmar o login, colete da área "Meus Cursos" os totais de cursos, cursos terminados e eventuais cursos listados.
+7. Se a conta não listar cursos, consulte o catálogo público como alternativa e colete título, carga horária, descrição e link dos cursos.
+8. Ao final, exiba os dados encontrados e a quantidade total coletada. Nunca compartilhe suas credenciais.
 
 ---
 
