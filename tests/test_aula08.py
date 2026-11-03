@@ -1,10 +1,13 @@
 """
-Testes estruturais para AULA08/bot_web_login.py.
+Testes estruturais para AULA08/bot_products_harry.py.
 
 Valida que:
-- O script existe
-- Importa selenium
-- Referencia a URL de treino e os campos corretos
+- O script existe e não está vazio
+- Importa selenium e usa webdriver
+- Referencia o site da loja do Harry Potter (harrypottershop.com)
+- Configura alguma estratégia de espera (implicitly_wait ou WebDriverWait)
+- Usa seletores do Selenium para localizar os produtos
+- Coleta título e preço dos produtos em uma estrutura de dados
 """
 
 import pathlib
@@ -12,15 +15,16 @@ import pathlib
 import pytest
 
 
-SCRIPT_PATH = pathlib.Path(__file__).parent.parent / "AULA08" / "bot_web_login.py"
+SCRIPT_PATH = pathlib.Path(__file__).parent.parent / "AULA08" / "bot_products_harry.py"
 
 
 class TestScriptExiste:
     def test_arquivo_existe(self):
-        assert SCRIPT_PATH.exists(), "AULA08/bot_web_login.py não encontrado."
+        assert SCRIPT_PATH.exists(), "AULA08/bot_products_harry.py não encontrado."
 
     def test_arquivo_nao_vazio(self):
-        assert SCRIPT_PATH.stat().st_size > 0, "bot_web_login.py está vazio."
+        assert SCRIPT_PATH.exists(), "AULA08/bot_products_harry.py não encontrado."
+        assert SCRIPT_PATH.stat().st_size > 0, "bot_products_harry.py está vazio."
 
 
 @pytest.fixture(scope="module")
@@ -40,21 +44,31 @@ class TestImportSelenium:
         assert "webdriver" in source_code, "webdriver não referenciado."
 
 
-class TestLogicaLogin:
-    def test_url_treino(self, source_code):
-        """O script deve acessar the-internet.herokuapp.com/login."""
-        assert "the-internet.herokuapp.com/login" in source_code, (
-            "URL de treino não encontrada no script."
+class TestLogicaScraping:
+    def test_url_harry_potter(self, source_code):
+        """O script deve acessar a loja do Harry Potter."""
+        assert "harrypottershop.com" in source_code, (
+            "URL da loja do Harry Potter (harrypottershop.com) não encontrada no script."
         )
 
-    def test_campo_username(self, source_code):
-        """O script deve localizar o campo 'username'."""
-        assert "username" in source_code, "Campo 'username' não referenciado."
+    def test_configura_espera(self, source_code):
+        """O script deve configurar alguma espera (implicitly_wait ou WebDriverWait)."""
+        assert ("implicitly_wait" in source_code) or ("WebDriverWait" in source_code), (
+            "Nenhuma espera configurada (use implicitly_wait ou WebDriverWait)."
+        )
 
-    def test_campo_password(self, source_code):
-        """O script deve localizar o campo 'password'."""
-        assert "password" in source_code, "Campo 'password' não referenciado."
+    def test_usa_seletor(self, source_code):
+        """O script deve localizar elementos com algum seletor do Selenium."""
+        assert ("find_element" in source_code) or ("By." in source_code), (
+            "Nenhum seletor do Selenium (find_element / By.) encontrado."
+        )
 
-    def test_implicitly_wait(self, source_code):
-        """O script deve configurar implicitly_wait."""
-        assert "implicitly_wait" in source_code, "implicitly_wait não configurado."
+    def test_coleta_titulo_e_preco(self, source_code):
+        """O script deve coletar título e preço dos produtos."""
+        texto = source_code.lower()
+        assert "titulo" in texto or "título" in texto, (
+            "O script deve coletar o 'titulo' dos produtos."
+        )
+        assert "preço" in texto or "preco" in texto, (
+            "O script deve coletar o 'preço' dos produtos."
+        )
