@@ -30,7 +30,7 @@ else:
 
 # Flag de seguranca: por padrao a demo NAO interage com perifericos.
 # Mude para True apenas em ambiente controlado e com um editor em foco.
-PERMITIR_DIGITACAO: bool = False
+PERMITIR_DIGITACAO: bool = True
 
 # Dados do cenario (texto e nome de arquivo exclusivos deste exemplo).
 MENSAGEM_TURNO: str = "Checklist de Abertura de Turno concluido"
