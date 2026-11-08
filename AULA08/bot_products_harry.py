@@ -22,42 +22,23 @@ from selenium.webdriver.support.ui import WebDriverWait
 URL_LOGIN = "https://www.harrypotter.com/pt/login"
 URL_PRODUTOS = "https://harrypottershop.com/collections/gifts/Under-$10"
 
-SELETORES_CARD = [
-    "li.grid__item",
-    ".product-card",
-    ".product-item",
-    ".card-wrapper",
-    "[data-product-card]",
-    "div[class*='product-card']",
-    "div[class*='product-item']",
-    "div[class*='grid-product']",
-    ".product-tile",
-    ".card",
-]
+# Seletores agrupados para evitar esperas repetitivas
+SELETOR_CARDS = (
+    "li.grid__item, .product-card, .product-item, .card-wrapper, "
+    "[data-product-card], div[class*='product-card'], "
+    "div[class*='product-item'], div[class*='grid-product'], "
+    ".product-tile, .card"
+)
 
-SELETORES_TITULO = [
-    ".card__heading",
-    ".product-item__title",
-    ".product-card__title",
-    ".product-title",
-    ".title",
-    "h2",
-    "h3",
-    "h4",
-    "a[href*='/products/']",
-]
+SELETOR_TITULO = (
+    ".card__heading, .product-item__title, .product-card__title, "
+    ".product-title, .title, h2, h3, h4, a[href*='/products/']"
+)
 
-SELETORES_PRECO = [
-    ".price",
-    ".price__regular",
-    ".price-item--regular",
-    ".price-item--sale",
-    ".product-item__price",
-    ".product-card__price",
-    ".price-item",
-    ".money",
-    "[class*='price']",
-]
+SELETOR_PRECO = (
+    ".price, .price__regular, .price-item, .product-item__price, "
+    ".product-card__price, .money, [class*='price']"
+)
 
 MOEDAS = ("$", "£", "€", "R$")
 
@@ -86,6 +67,8 @@ def fechar_modais_e_cookies(driver: webdriver.Chrome) -> None:
         "//button[contains(@class, 'modal__close')]",
         "//button[@aria-label='Close' or @aria-label='Fechar']",
     ]
+    # Reduz espera para não atrasar caso não haja popup
+    driver.implicitly_wait(1)
     for xpath in seletores:
         try:
             for botao in driver.find_elements(By.XPATH, xpath):
@@ -94,6 +77,7 @@ def fechar_modais_e_cookies(driver: webdriver.Chrome) -> None:
                     sleep(0.5)
         except Exception:
             continue
+    driver.implicitly_wait(10)
 
 
 def rolar_pagina(driver: webdriver.Chrome) -> None:
@@ -115,23 +99,23 @@ def rolar_pagina(driver: webdriver.Chrome) -> None:
 
 def extrair_titulo_card(card) -> str:
     """Extrai o título do produto a partir de um elemento card."""
-    for t_sel in SELETORES_TITULO:
-        try:
-            elemento = card.find_element(By.CSS_SELECTOR, t_sel)
-            texto = elemento.text.strip()
+    try:
+        elementos = card.find_elements(By.CSS_SELECTOR, SELETOR_TITULO)
+        for el in elementos:
+            texto = el.text.strip()
             if texto and len(texto) > 1:
                 return texto.split("\n")[0].strip()
-        except Exception:
-            continue
+    except Exception:
+        pass
     return ""
 
 
 def extrair_preco_card(card) -> str:
     """Extrai o preço do produto a partir de um elemento card."""
-    for p_sel in SELETORES_PRECO:
-        try:
-            elemento = card.find_element(By.CSS_SELECTOR, p_sel)
-            texto = elemento.text.strip()
+    try:
+        elementos = card.find_elements(By.CSS_SELECTOR, SELETOR_PRECO)
+        for el in elementos:
+            texto = el.text.strip()
             if not texto:
                 continue
             linhas = [lin.strip() for lin in texto.split("\n") if lin.strip()]
@@ -140,18 +124,18 @@ def extrair_preco_card(card) -> str:
                     return linha
             if linhas:
                 return linhas[0]
-        except Exception:
-            continue
+    except Exception:
+        pass
     return "Preço indisponível"
 
 
 def obter_cards_produtos(driver: webdriver.Chrome) -> list:
-    """Busca os cards de produto testando os seletores mais comuns."""
-    for seletor in SELETORES_CARD:
-        encontrados = driver.find_elements(By.CSS_SELECTOR, seletor)
-        if encontrados:
-            return encontrados
-    return []
+    """Busca os cards de produto na página."""
+    try:
+        cards = driver.find_elements(By.CSS_SELECTOR, SELETOR_CARDS)
+        return [c for c in cards if c.text.strip()]
+    except Exception:
+        return []
 
 
 def extrair_produtos_de_cards(cards: list) -> list[dict[str, str]]:
@@ -213,15 +197,28 @@ def coletar_produtos(driver: webdriver.Chrome) -> list[dict[str, str]]:
     Retorna uma lista de dicionários no formato:
         [{"titulo": ..., "Preço": ...}, ...]
     """
+    print("   -> Aguardando renderização da página...")
     _ = WebDriverWait(driver, 15)
+
+    print("   -> Rolando página para carregar produtos...")
     rolar_pagina(driver)
 
+    # Desativa tempo de espera implícita durante a varredura interna
+    driver.implicitly_wait(0)
+
+    print("   -> Identificando cards de produtos...")
     cards = obter_cards_produtos(driver)
+    print(f"   -> {len(cards)} elementos encontrados. Extraindo dados...")
+
     produtos = extrair_produtos_de_cards(cards)
 
     if not produtos:
+        print("   -> Utilizando busca complementar por links...")
         produtos = extrair_produtos_fallback(driver, set())
 
+    # Restaura o timeout padrão
+    driver.implicitly_wait(10)
+    print(f"   -> Extração concluída: {len(produtos)} produtos identificados.")
     return produtos
 
 
@@ -257,7 +254,7 @@ def main() -> None:
         print(f"2. Navegando até a loja: {URL_PRODUTOS}")
         driver.get(URL_PRODUTOS)
         fechar_modais_e_cookies(driver)
-        sleep(3)
+        sleep(2)
 
         # 6. Extrair os produtos (Título e Preço)
         print("3. Coletando produtos da página...")
