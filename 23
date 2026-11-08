@@ -1,0 +1,213 @@
+[33mcommit c86360a179aea6d2edb6b858b143bbf97e97420a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: c74a8f3 ee5c040
+Author: GitEduardoHub <contato.dev.luis.eduardo@gmail.com>
+Date:   Tue Sep 22 15:52:58 2026 -0300
+
+    Merge branch 'Tavares785:master' into master
+
+[33mcommit ee5c0407fdb261d6a270162748e3a86bac3143c1[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 15 21:43:36 2026 -0300
+
+    Aula 05
+
+[33mcommit c74a8f345fcf6895a0d1920792d351d95fbe36d6[m
+Merge: c3cc957 4f669dc
+Author: Luis Eduardo Almeida <contato.dev.luis.eduardo.almeida@gmail.com>
+Date:   Sat Sep 12 20:52:21 2026 -0300
+
+    tentando entender
+
+[33mcommit 4f669dc70067dd1c8b434c431d3e6974ec575f87[m[33m ([m[1;31mupstream/master[m[33m)[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 23:30:57 2026 -0300
+
+    testes
+
+[33mcommit 0aae1e2c6cfff5ca3cf3d8cbb7a696f76f488ba3[m
+Merge: 8196afe e776dcc
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 23:20:45 2026 -0300
+
+    Merge branch 'master' of github.com:Tavares785/aulas_rpa_2026
+
+[33mcommit 8196afeec0fdebcc16d2718d692cf00f4c035e87[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 23:18:59 2026 -0300
+
+    Remove Teste doc e project
+
+[33mcommit e776dcc72960cf9297f43d30682326f1e6a85227[m
+Merge: d8c79e9 79f9dff
+Author: Gustavo Tavares <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 22:21:38 2026 -0300
+
+    Merge pull request #105 from Tavares785/lab03/252525
+    
+    Lab03/252525
+
+[33mcommit 79f9dff46e72ac4abaed5f58b5aaab22b67ca0ec[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 22:19:19 2026 -0300
+
+    Ajuste no testes action
+
+[33mcommit 5da039e857507ed8e8f1f02270f06f18a505b784[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 21:53:20 2026 -0300
+
+    AULA04
+
+[33mcommit 49b23f0eb7d5687b809e01832757603a9c9b5fbd[m
+Merge: 4d74859 d8c79e9
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 19:45:36 2026 -0300
+
+    Merge branch 'master' of github.com:Tavares785/aulas_rpa_2026 into develop
+
+[33mcommit 4d74859e1950a5962d5790d669e8f4b32bb69536[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 19:42:25 2026 -0300
+
+    Ajuste aula 01
+
+[33mcommit 0cef74e4b0802e4673561bf6100993962a26ff64[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 8 19:37:50 2026 -0300
+
+    Ajuste aula 01
+
+[33mcommit c3cc95739beb9343ee234eafa341a1649210166c[m
+Merge: b429e18 d8c79e9
+Author: GitEduardoHub <contato.dev.luis.eduardo@gmail.com>
+Date:   Tue Sep 8 19:36:10 2026 -0300
+
+    Merge branch 'Tavares785:master' into master
+
+[33mcommit d8c79e908630f3338a7c48f4614a8b969855640f[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Wed Sep 2 00:51:48 2026 -0300
+
+    Ajuste no CI e Exemplos da Aula
+
+[33mcommit 7636bca3420801ae0b473f106d701277833f9391[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 1 21:30:22 2026 -0300
+
+    TF Aula03
+
+[33mcommit b429e18d7dbcba07a8963979ed116fb501e805b4[m
+Author: Luis Eduardo Almeida <contato.dev.luis.eduardo.almeida@gmail.com>
+Date:   Tue Sep 1 20:22:11 2026 -0300
+
+    Adiciona validador_transacoes.py na AULA02
+
+[33mcommit d5e93bf75412d21c6facc45a5b669f45b8b58c0b[m
+Merge: 8d1be01 8da33ef
+Author: GitEduardoHub <contato.dev.luis.eduardo@gmail.com>
+Date:   Tue Sep 1 19:38:14 2026 -0300
+
+    Merge branch 'Tavares785:master' into master
+
+[33mcommit 8da33ef7ebc6e2e60c3b223db52eb43d559d048e[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Sep 1 19:36:59 2026 -0300
+
+    Teste upstream
+
+[33mcommit 8d1be01407dbecd277037c8b4aba385ef99bf930[m
+Merge: bbf51b7 ccdba9e
+Author: GitEduardoHub <contato.dev.luis.eduardo@gmail.com>
+Date:   Tue Sep 1 19:33:31 2026 -0300
+
+    Merge branch 'Tavares785:master' into master
+
+[33mcommit ccdba9ecde7600a2e8d7631ebb3417a1534dcb91[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Sun Aug 30 13:09:57 2026 -0300
+
+    Ajuste CI
+
+[33mcommit 77e43b2866e12e9db43d1bdc4f7a50382ac24d71[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Aug 25 21:04:05 2026 -0300
+
+    Aula 02
+
+[33mcommit bbf51b789132252be41b08241d624ce0d92c6adc[m
+Author: Luis Eduardo Almeida <contato.dev.luis.eduardo.almeida@gmail.com>
+Date:   Sun Aug 23 14:16:55 2026 -0300
+
+    TfAula01
+
+[33mcommit 7f82bc78820ddcb36d7041bff2687fb262b65b2b[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Wed Aug 19 00:49:07 2026 -0300
+
+    Teste de 05 a 14
+
+[33mcommit ed22a2fef32c0873accb01fb095058c8da203eab[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Wed Aug 19 00:29:24 2026 -0300
+
+    Resposta Aula 01
+
+[33mcommit a2d48b566674a0361333329d392a283d9d94b6e4[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Wed Aug 19 00:26:17 2026 -0300
+
+    Testes Action
+
+[33mcommit 3e2c12eaaaf9c9e7fd2bc1ae7faf42aa523e0625[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Wed Aug 19 00:06:09 2026 -0300
+
+    Iniciais
+
+[33mcommit 1ccf6c80b3a2baf0011db4607c455461b75bd1ac[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Aug 18 23:50:42 2026 -0300
+
+    TESTES
+
+[33mcommit 640960361b44f45a584ac43620dba5aa8d10c6df[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Aug 18 23:23:23 2026 -0300
+
+    Adiciona inicializador do bot financeiro
+
+[33mcommit 30d87939faaf7405f1db997a1a6293f5ddcc409f[m
+Author: Luis Eduardo Almeida <contato.dev.luis.eduardo.almeida@gmail.com>
+Date:   Tue Aug 18 21:43:46 2026 -0300
+
+    test
+
+[33mcommit d884663e266ccd7814d0575707c8dba6297b380b[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Aug 18 21:35:48 2026 -0300
+
+    Aula 01
+
+[33mcommit d1099ab994e226a31b978b7271e07f8b24d7694c[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Tue Aug 18 21:04:20 2026 -0300
+
+    AULA 01
+
+[33mcommit fc26b63a8edcc0f06852032de745152dc01b35f1[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Sat Aug 8 22:11:46 2026 -0300
+
+    Ajuste visualização
+
+[33mcommit bd61abba863271436cd3d9ac13618137721490f1[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Sat Aug 8 22:05:55 2026 -0300
+
+    Ementa
+
+[33mcommit 6ee812a0ebb87e0acce07ec56a4ce1918b5cede9[m
+Author: tavares785 <gustavotavares785@gmail.com>
+Date:   Sat Aug 8 21:44:47 2026 -0300
+
+    Ementa
