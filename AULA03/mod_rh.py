@@ -1,23 +1,20 @@
+# mod_rh.py
+
 def cadastrar_colaborador(nome: str, cargo: str, salario: float) -> dict:
-    """Estrutura os dados do colaborador em um dicionário padronizado."""
+    """Retorna um dicionário estruturado com os dados do colaborador."""
     return {
-        "nome": nome.strip().title(),
-        "cargo": cargo.strip().title(),
-        "salario": round(salario, 2)
+        "nome": nome,
+        "cargo": cargo,
+        "salario": salario
     }
 
 def exibir_colaboradores(lista_colaboradores: list) -> None:
-    """Exibe a lista de colaboradores de forma organizada no terminal."""
+    """Percorre a lista e imprime os colaboradores formatados."""
     if not lista_colaboradores:
-        print("\n[!] Nenhum colaborador cadastrado até o momento.")
+        print("\n[AVISO] Nenhum colaborador cadastrado ainda.")
         return
-    
-    print("\n" + "=" * 45)
-    print("        COLABORADORES CADASTRADOS")
-    print("=" * 45)
-    
-    for indice, colab in enumerate(lista_colaboradores, start=1):
-        print(f"#{indice:02d} | Nome: {colab['nome']}")
-        print(f"     Cargo: {colab['cargo']}")
-        print(f"     Salário: R$ {colab['salario']:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
-        print("-" * 45)
+        
+    print("\n--- Lista de Colaboradores ---")
+    for colab in lista_colaboradores:
+        print(f"Nome: {colab['nome']} | Cargo: {colab['cargo']} | Salário: R$ {colab['salario']:.2f}")
+    print("------------------------------\n")

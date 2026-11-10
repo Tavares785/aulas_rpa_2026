@@ -1,45 +1,39 @@
+# main.py
 from mod_rh import cadastrar_colaborador, exibir_colaboradores
-
-def exibir_menu():
-    print("\n┌──────────────────────────────┐")
-    print("│      PAINEL DE RH - MENU     │")
-    print("├──────────────────────────────┤")
-    print("│ 1 - Cadastrar Colaborador    │")
-    print("│ 2 - Listar Colaboradores     │")
-    print("│ 0 - Sair                     │")
-    print("└──────────────────────────────┘")
 
 def main():
     colaboradores = []
     
-    print(">> Sistema de Automação de RH Iniciado <<")
-    
     while True:
-        exibir_menu()
-        opcao = input("Digite a opção desejada: ").strip()
+        print("\n=== Menu RH ===")
+        print("1 - Cadastrar")
+        print("2 - Listar")
+        print("0 - Sair")
         
-        if opcao == "1":
-            print("\n--- Novo Cadastro ---")
-            nome = input("Informe o nome do colaborador: ")
-            cargo = input("Informe o cargo: ")
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == '1':
+            nome = input("Nome do colaborador: ")
+            cargo = input("Cargo: ")
             
+            # Tratamento básico para garantir que o salário digitado seja um número
             try:
-                salario = float(input("Informe o salário (R$): ").replace(",", "."))
+                salario = float(input("Salário: "))
                 novo_colab = cadastrar_colaborador(nome, cargo, salario)
                 colaboradores.append(novo_colab)
-                print(f"\n[✓] Sucesso: {novo_colab['nome']} foi cadastrado(a)!")
+                print("[SUCESSO] Colaborador cadastrado!")
             except ValueError:
-                print("\n[X] Erro: Digite um valor numérico válido para o salário.")
+                print("[ERRO] Por favor, digite um valor numérico válido para o salário.")
                 
-        elif opcao == "2":
+        elif opcao == '2':
             exibir_colaboradores(colaboradores)
             
-        elif opcao == "0":
-            print("\nEncerrando o sistema RH... Até logo!")
+        elif opcao == '0':
+            print("Encerrando o sistema...")
             break
             
         else:
-            print("\n[!] Opção inválida. Por favor, escolha 1, 2 ou 0.")
+            print("[ERRO] Opção inválida. Tente novamente.")
 
 if __name__ == "__main__":
     main()
