@@ -1,5 +1,23 @@
-/**/*_resp.md
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+
+# Ambiente virtual
+venv/
 .venv/
+env/
+
+# Arquivos temporários
+*.tmp
+*.log
+*.bak
+
+# Projeto
+/**/*_resp.md
 .kiro/
 .pytest_cache/
-/**/__pycache__/
