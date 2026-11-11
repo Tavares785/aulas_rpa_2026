@@ -4,9 +4,10 @@ Robô que abre o editor de texto via atalho de teclado,
 digita um relatório e salva o arquivo automaticamente.
 """
 
-import pyautogui
+import platform
 import time
-import sys
+
+import pyautogui
 
 # ─── Configurações de Segurança ──────────────────────────────────────────────
 # FAILSAFE: mova o mouse para o canto superior esquerdo para abortar o script
@@ -15,7 +16,6 @@ pyautogui.FAILSAFE = True
 pyautogui.PAUSE = 0.5
 
 # ─── Detecta o sistema operacional ───────────────────────────────────────────
-import platform
 SO = platform.system()  # 'Windows', 'Linux' ou 'Darwin'
 
 print(f"[INFO] Sistema detectado: {SO}")
