@@ -1,0 +1,47 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 432 >>
+stream
+BT
+/F1 11 Tf
+14 TL
+50 790 Td
+(NOTA DE COBRANCA 0003/2026) Tj T*
+(Emissao: 18/03/2026   Vencimento: 17/04/2026) Tj T*
+() Tj T*
+(Razao Social: Papelaria Central Comercio EIRELI) Tj T*
+(CNPJ: 98.765.432/0001-98) Tj T*
+() Tj T*
+(Resma de papel A4 \(50 un\)         R$ 2.250,00) Tj T*
+(Toner impressora \(5 un\)           R$ 1.490,90) Tj T*
+() Tj T*
+(Desconto pontualidade             R$ 100,00) Tj T*
+(VALOR TOTAL: R$ 3.640,90) Tj T*
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000336 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+819
+%%EOF

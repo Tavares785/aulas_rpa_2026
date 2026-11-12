@@ -1,0 +1,48 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 515 >>
+stream
+BT
+/F1 11 Tf
+14 TL
+50 790 Td
+(FATURA DE SERVICOS No 2026/0001) Tj T*
+(Emissao: 05/03/2026        Vencimento: 05/04/2026) Tj T*
+() Tj T*
+(Fornecedor: Tech Solucoes em TI Ltda) Tj T*
+(CNPJ: 12.345.678/0001-95) Tj T*
+(Endereco: Av. Paulista, 1000 - Sao Paulo/SP) Tj T*
+() Tj T*
+(Descricao                              Qtde     Valor) Tj T*
+(Licenca de software ERP                  2     R$ 1.200,00) Tj T*
+(Suporte tecnico mensal                   1     R$ 300,00) Tj T*
+() Tj T*
+(Total a pagar: R$ 1.500,00) Tj T*
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000336 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+902
+%%EOF
