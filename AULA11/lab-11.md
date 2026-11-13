@@ -25,7 +25,7 @@ Em setores contábeis e de suprimentos, milhares de faturas em PDF chegam diaria
 
 
 
-## 🚀 Entrega
+## 🚀 Entrega 
 
 1. No **seu fork**, crie uma branch a partir da `main` com o nome `lab11/SEU_RA` (ex: `lab11/123456`):
    ```bash
