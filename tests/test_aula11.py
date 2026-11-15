@@ -1,62 +1,129 @@
-"""
-Testes estruturais para AULA11/scraper_noticias.py.
+"""Testes de extração e exportação de faturas da AULA11."""
 
-Valida que:
-- O script existe
-- Importa requests e BeautifulSoup
-- Valida status 200
-- Salva resultado em CSV
-"""
+from contextlib import nullcontext
+from pathlib import Path
+from types import SimpleNamespace
 
-import pathlib
-
+import pandas as pd
 import pytest
 
-
-SCRIPT_PATH = pathlib.Path(__file__).parent.parent / "AULA11" / "scraper_noticias.py"
-
-
-class TestScriptExiste:
-    def test_arquivo_existe(self):
-        assert SCRIPT_PATH.exists(), "AULA11/scraper_noticias.py não encontrado."
-
-    def test_arquivo_nao_vazio(self):
-        assert SCRIPT_PATH.stat().st_size > 0, "scraper_noticias.py está vazio."
+from AULA11 import leitor_faturas_pdf
 
 
-@pytest.fixture(scope="module")
-def source_code():
-    if not SCRIPT_PATH.exists():
-        pytest.skip("Script não encontrado")
-    return SCRIPT_PATH.read_text(encoding="utf-8")
+def test_arquivo_do_lab_existe():
+    assert leitor_faturas_pdf.__file__
+    assert Path(leitor_faturas_pdf.__file__).is_file()
 
 
-class TestImports:
-    def test_importa_requests(self, source_code):
-        assert "requests" in source_code, "requests não importado."
+@pytest.mark.parametrize(
+    ("texto", "identificador", "valor"),
+    [
+        (
+            "NIF: 501964843\nTotal: 1200.50",
+            "501964843",
+            "1200.50",
+        ),
+        (
+            "CNPJ: 12.345.678/0001-95\n"
+            "Total a pagar: R$ 1.500,00",
+            "12.345.678/0001-95",
+            "R$ 1.500,00",
+        ),
+        (
+            "CNPJ: 98.765.432/0001-98\n"
+            "VALOR TOTAL: R$ 3.640,90",
+            "98.765.432/0001-98",
+            "R$ 3.640,90",
+        ),
+    ],
+)
+def test_extrair_dados(texto, identificador, valor):
+    assert leitor_faturas_pdf.extrair_dados(texto, "fatura.pdf") == {
+        "arquivo": "fatura.pdf",
+        "nif_cnpj": identificador,
+        "valor_total": valor,
+    }
 
-    def test_importa_beautifulsoup(self, source_code):
-        assert "BeautifulSoup" in source_code, "BeautifulSoup não importado."
+
+def test_extrair_dados_preserva_campos_ausentes():
+    assert leitor_faturas_pdf.extrair_dados("Sem dados", "vazia.pdf") == {
+        "arquivo": "vazia.pdf",
+        "nif_cnpj": None,
+        "valor_total": None,
+    }
 
 
-class TestLogica:
-    def test_valida_status_code(self, source_code):
-        """O script deve verificar o status code 200."""
-        assert "status_code" in source_code or "200" in source_code, (
-            "Verificação de status_code 200 não encontrada."
-        )
+def test_ler_texto_concatena_todas_as_paginas(monkeypatch, tmp_path):
+    pdf = SimpleNamespace(
+        pages=[
+            SimpleNamespace(extract_text=lambda: "Página um"),
+            SimpleNamespace(extract_text=lambda: "Página dois"),
+            SimpleNamespace(extract_text=lambda: None),
+        ]
+    )
+    monkeypatch.setattr(
+        leitor_faturas_pdf.pdfplumber,
+        "open",
+        lambda caminho: nullcontext(pdf),
+    )
 
-    def test_usa_html_parser(self, source_code):
-        """O script deve usar 'html.parser'."""
-        assert "html.parser" in source_code, "'html.parser' não utilizado."
-
-    def test_usa_find_all_ou_select(self, source_code):
-        """O script deve usar find_all ou select para raspar elementos."""
-        usa = "find_all" in source_code or "select" in source_code
-        assert usa, "find_all() ou select() não utilizados."
+    assert leitor_faturas_pdf.ler_texto(tmp_path / "fatura.pdf") == (
+        "Página um\nPágina dois\n"
+    )
 
 
-class TestSaida:
-    def test_salva_csv(self, source_code):
-        """O script deve salvar resultado em CSV."""
-        assert "csv" in source_code.lower(), "Referência a CSV não encontrada."
+def test_extrai_dados_do_pdf_de_exemplo():
+    caminho = Path(leitor_faturas_pdf.PASTA_FATURAS) / "fatura_001.pdf"
+
+    assert leitor_faturas_pdf.extrair_dados(
+        leitor_faturas_pdf.ler_texto(caminho),
+        caminho.name,
+    ) == {
+        "arquivo": "fatura_001.pdf",
+        "nif_cnpj": "12.345.678/0001-95",
+        "valor_total": "R$ 1.500,00",
+    }
+
+
+def test_processar_faturas_retorna_um_registro_por_pdf(monkeypatch, tmp_path):
+    (tmp_path / "fatura_002.pdf").touch()
+    (tmp_path / "fatura_001.pdf").touch()
+    (tmp_path / "ignorar.txt").touch()
+    textos = {
+        "fatura_001.pdf": "NIF: 501964843\nTotal: 1200.50",
+        "fatura_002.pdf": "CNPJ: 12.345.678/0001-95\nTotal: R$ 825,75",
+    }
+    monkeypatch.setattr(
+        leitor_faturas_pdf,
+        "ler_texto",
+        lambda caminho: textos[caminho.name],
+    )
+
+    assert leitor_faturas_pdf.processar_faturas(tmp_path) == [
+        {
+            "arquivo": "fatura_001.pdf",
+            "nif_cnpj": "501964843",
+            "valor_total": "1200.50",
+        },
+        {
+            "arquivo": "fatura_002.pdf",
+            "nif_cnpj": "12.345.678/0001-95",
+            "valor_total": "R$ 825,75",
+        },
+    ]
+
+
+def test_exportar_excel_salva_colunas_e_registros(tmp_path):
+    caminho = tmp_path / "relatorio_faturas.xlsx"
+    faturas = [
+        {
+            "arquivo": "fatura.pdf",
+            "nif_cnpj": "501964843",
+            "valor_total": "1200.50",
+        }
+    ]
+
+    leitor_faturas_pdf.exportar_excel(faturas, caminho)
+
+    tabela = pd.read_excel(caminho, dtype=str)
+    assert tabela.to_dict(orient="records") == faturas
