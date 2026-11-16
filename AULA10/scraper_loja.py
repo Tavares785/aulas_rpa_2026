@@ -5,6 +5,14 @@ Robo de monitoramento de precos: raspa o catalogo da colecao Gryffindor
 da loja oficial do Harry Potter (Shopify), extrai nome e preco de cada
 produto, exibe os 5 primeiros no terminal e salva tudo em CSV.
 
+Fluxo em duas etapas (evita o erro 429 - Too Many Requests):
+  1. Baixa a pagina HTML UMA vez e salva em pagina_gryffindor.html.
+  2. Faz o scraping a partir do arquivo local (sem novas requisicoes).
+
+Se o servidor bloquear o download (429), abra a URL no navegador,
+pressione Ctrl+S ("Pagina da Web, somente HTML") e salve como
+pagina_gryffindor.html nesta mesma pasta. Depois rode o script de novo.
+
 Requer: pip install requests beautifulsoup4
 """
 import csv
@@ -15,7 +23,9 @@ import requests
 from bs4 import BeautifulSoup
 
 URL_CATALOGO = "https://harrypottershop.co.uk/collections/gryffindor"
-ARQUIVO_CSV = pathlib.Path(__file__).parent / "produtos_gryffindor.csv"
+PASTA = pathlib.Path(__file__).parent
+ARQUIVO_HTML = PASTA / "pagina_gryffindor.html"
+ARQUIVO_CSV = PASTA / "produtos_gryffindor.csv"
 COLUNAS = ["nome", "preco"]
 
 # User-Agent de navegador real (boa pratica para nao ser bloqueado).
@@ -41,6 +51,25 @@ def baixar_pagina(url):
             f"Resposta inesperada do servidor: {resposta.status_code} (esperado 200 OK)"
         )
     return resposta.text
+
+
+def obter_html():
+    """Retorna o HTML do catalogo, baixando-o apenas se ainda nao existir.
+
+    - Se pagina_gryffindor.html ja existe, le o arquivo local (nenhuma
+      requisicao e feita, entao nao ha risco de 429).
+    - Caso contrario, baixa a pagina e salva o HTML em disco.
+    """
+    if ARQUIVO_HTML.exists():
+        print(f"Usando HTML salvo localmente: {ARQUIVO_HTML.name}")
+        return ARQUIVO_HTML.read_text(encoding="utf-8", errors="ignore")
+
+    print(f"Baixando: {URL_CATALOGO}")
+    html = baixar_pagina(URL_CATALOGO)
+    print("Status 200 OK - pagina recebida.")
+    ARQUIVO_HTML.write_text(html, encoding="utf-8")
+    print(f"HTML salvo em {ARQUIVO_HTML.name}")
+    return html
 
 
 def extrair_preco(card):
@@ -83,14 +112,16 @@ def salvar_csv(produtos, caminho):
 
 
 def main():
-    print(f"Acessando: {URL_CATALOGO}")
     try:
-        html = baixar_pagina(URL_CATALOGO)
+        html = obter_html()
     except (requests.RequestException, RuntimeError) as erro:
-        print(f"Falha ao acessar o catalogo: {erro}")
+        print(f"Falha ao baixar o catalogo: {erro}")
+        print(
+            "Abra a URL no navegador, salve com Ctrl+S como "
+            f"'{ARQUIVO_HTML.name}' na pasta {PASTA} e rode o script novamente."
+        )
         return
 
-    print("Status 200 OK - pagina recebida.")
     produtos = extrair_produtos(html)
 
     if not produtos:
