@@ -1,64 +1,67 @@
-"""
-Testes estruturais para AULA10/leitor_faturas_pdf.py.
-
-Valida que:
-- O script existe
-- Importa as bibliotecas obrigatórias (pdfplumber, pandas, re)
-- Usa expressões regulares
-- Gera o arquivo Excel
-"""
-
-import pathlib
-
-import pytest
+from AULA10 import scraper_loja
 
 
-SCRIPT_PATH = pathlib.Path(__file__).parent.parent / "AULA10" / "leitor_faturas_pdf.py"
+class RespostaFake:
+    status_code = 200
+
+    def __init__(self, texto):
+        self.text = texto
+
+    def raise_for_status(self):
+        return None
 
 
-class TestScriptExiste:
-    def test_arquivo_existe(self):
-        assert SCRIPT_PATH.exists(), "AULA10/leitor_faturas_pdf.py não encontrado."
+def test_extrai_produtos_e_prioriza_preco_promocional(monkeypatch):
+    html = """
+    <div class="card">
+      <h3 class="card__heading"> Gryffindor <br> Journal </h3>
+      <span class="price-item--regular">£20.00</span>
+      <span class="price-item--sale"> £18.95 </span>
+    </div>
+    <div class="card">
+      <h3 class="card__heading">Scarf</h3>
+      <span class="price-item--regular">£15.00</span>
+    </div>
+    """
+    requisicoes = []
 
-    def test_arquivo_nao_vazio(self):
-        assert SCRIPT_PATH.stat().st_size > 0, "leitor_faturas_pdf.py está vazio."
+    def get_falso(endereco, **kwargs):
+        requisicoes.append((endereco, kwargs))
+        return RespostaFake(html)
 
+    monkeypatch.setattr(scraper_loja.requests, "get", get_falso)
 
-@pytest.fixture(scope="module")
-def source_code():
-    if not SCRIPT_PATH.exists():
-        pytest.skip("Script não encontrado")
-    return SCRIPT_PATH.read_text(encoding="utf-8")
+    produtos = scraper_loja.coletar_produtos()
 
-
-class TestImports:
-    def test_importa_pdfplumber(self, source_code):
-        assert "pdfplumber" in source_code, "pdfplumber não importado."
-
-    def test_importa_pandas(self, source_code):
-        assert "pandas" in source_code or "import pd" in source_code, (
-            "pandas não importado."
-        )
-
-    def test_importa_re(self, source_code):
-        """O script deve usar expressões regulares (módulo re)."""
-        assert "import re" in source_code or "from re" in source_code, (
-            "Módulo 're' não importado."
-        )
-
-
-class TestRegex:
-    def test_usa_re_search_ou_findall(self, source_code):
-        """O script deve usar re.search ou re.findall para extrair padrões."""
-        usa_regex = "re.search" in source_code or "re.findall" in source_code
-        assert usa_regex, "re.search ou re.findall não utilizados."
+    assert produtos == [
+        {"nome": "Gryffindor Journal", "preco": "£18.95"},
+        {"nome": "Scarf", "preco": "£15.00"},
+    ]
+    assert requisicoes[0][1]["headers"]["User-Agent"]
+    assert requisicoes[0][1]["timeout"] > 0
 
 
-class TestExportacao:
-    def test_gera_excel(self, source_code):
-        """O script deve salvar em .xlsx."""
-        assert "xlsx" in source_code, "Referência a .xlsx não encontrada."
+def test_erro_http_e_propagado(monkeypatch):
+    resposta = RespostaFake("")
+    resposta.status_code = 503
 
-    def test_usa_to_excel(self, source_code):
-        """O script deve usar DataFrame.to_excel()."""
-        assert "to_excel" in source_code, "Método to_excel() não utilizado."
+    monkeypatch.setattr(
+        scraper_loja.requests, "get", lambda *args, **kwargs: resposta
+    )
+
+    try:
+        scraper_loja.coletar_produtos()
+    except scraper_loja.requests.HTTPError as erro:
+        assert "503" in str(erro)
+    else:
+        raise AssertionError("Uma resposta diferente de HTTP 200 deveria falhar.")
+
+
+def test_salva_csv_com_colunas_exigidas(tmp_path):
+    caminho = tmp_path / "produtos.csv"
+    produtos = [{"nome": "Diário", "preco": "£18.95"}]
+
+    scraper_loja.salvar_csv(produtos, caminho)
+
+    conteudo = caminho.read_text(encoding="utf-8-sig")
+    assert conteudo.splitlines() == ["nome,preco", "Diário,£18.95"]

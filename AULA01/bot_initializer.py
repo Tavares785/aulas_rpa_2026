@@ -1,56 +1,9 @@
-BOT_NAME:str = "RPA_FINANCEIRO_01"
-MAX_RETRIES:int = 3
-EXECUTION_TIMEOUT:float = 30.0
-IS_PRODUCTION:bool = False
+bot_name = "RPA_FINANCEIRO_01"
+max_retries = 3
+execution_timeout = 300
+is_production = True
 
-print(f"Bot Name: {BOT_NAME} (Type: {type(BOT_NAME)})")
-print(f"Max Retries: {MAX_RETRIES} (Type: {type(MAX_RETRIES)})")
-print(f"Execution Timeout: {EXECUTION_TIMEOUT} (Type: {type(EXECUTION_TIMEOUT)})")
-print(f"Is Production: {IS_PRODUCTION} (Type: {type(IS_PRODUCTION)})")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-print("Espacos")
+print(f"Bot Name: {type(bot_name)}")
+print(f"Max Retries: {max_retries}")
+print(f"Execution Timeout: {type(execution_timeout)}")
+print(f"Is Production: {is_production}")

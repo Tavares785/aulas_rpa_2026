@@ -1,62 +1,60 @@
-"""
-Testes estruturais para AULA11/scraper_noticias.py.
-
-Valida que:
-- O script existe
-- Importa requests e BeautifulSoup
-- Valida status 200
-- Salva resultado em CSV
-"""
-
-import pathlib
-
-import pytest
+from AULA11 import leitor_faturas_pdf
 
 
-SCRIPT_PATH = pathlib.Path(__file__).parent.parent / "AULA11" / "scraper_noticias.py"
+def test_extrai_nif_cnpj_e_valor_total():
+    nif = leitor_faturas_pdf.extrair_dados(
+        "Fornecedor NIF 123456789\nTotal: 1500.00", "nif.pdf"
+    )
+    cnpj = leitor_faturas_pdf.extrair_dados(
+        "CNPJ 12.345.678/0001-90\nTotal da fatura: R$ 1.500,00", "cnpj.pdf"
+    )
+
+    assert nif == {
+        "arquivo": "nif.pdf",
+        "nif_cnpj": "123456789",
+        "valor_total": "1500.00",
+    }
+    assert cnpj == {
+        "arquivo": "cnpj.pdf",
+        "nif_cnpj": "12.345.678/0001-90",
+        "valor_total": "R$ 1.500,00",
+    }
 
 
-class TestScriptExiste:
-    def test_arquivo_existe(self):
-        assert SCRIPT_PATH.exists(), "AULA11/scraper_noticias.py não encontrado."
+def test_valor_rotulado_e_priorizado_sobre_outros_valores():
+    dados = leitor_faturas_pdf.extrair_dados(
+        "Produtos: 25.00\nTotal: 1500.00", "fatura.pdf"
+    )
 
-    def test_arquivo_nao_vazio(self):
-        assert SCRIPT_PATH.stat().st_size > 0, "scraper_noticias.py está vazio."
-
-
-@pytest.fixture(scope="module")
-def source_code():
-    if not SCRIPT_PATH.exists():
-        pytest.skip("Script não encontrado")
-    return SCRIPT_PATH.read_text(encoding="utf-8")
+    assert dados["valor_total"] == "1500.00"
 
 
-class TestImports:
-    def test_importa_requests(self, source_code):
-        assert "requests" in source_code, "requests não importado."
+def test_processa_faturas_pdf_de_exemplo():
+    faturas = leitor_faturas_pdf.processar_faturas()
+    por_arquivo = {fatura["arquivo"]: fatura for fatura in faturas}
 
-    def test_importa_beautifulsoup(self, source_code):
-        assert "BeautifulSoup" in source_code, "BeautifulSoup não importado."
-
-
-class TestLogica:
-    def test_valida_status_code(self, source_code):
-        """O script deve verificar o status code 200."""
-        assert "status_code" in source_code or "200" in source_code, (
-            "Verificação de status_code 200 não encontrada."
-        )
-
-    def test_usa_html_parser(self, source_code):
-        """O script deve usar 'html.parser'."""
-        assert "html.parser" in source_code, "'html.parser' não utilizado."
-
-    def test_usa_find_all_ou_select(self, source_code):
-        """O script deve usar find_all ou select para raspar elementos."""
-        usa = "find_all" in source_code or "select" in source_code
-        assert usa, "find_all() ou select() não utilizados."
+    assert len(faturas) == 5
+    assert por_arquivo["fatura_001.pdf"]["valor_total"] == "R$ 1.500,00"
+    assert por_arquivo["fatura_005.pdf"]["nif_cnpj"] is None
+    assert por_arquivo["fatura_005.pdf"]["valor_total"] is None
 
 
-class TestSaida:
-    def test_salva_csv(self, source_code):
-        """O script deve salvar resultado em CSV."""
-        assert "csv" in source_code.lower(), "Referência a CSV não encontrada."
+def test_exporta_excel_com_colunas_e_registro(tmp_path):
+    caminho = tmp_path / "relatorio_faturas.xlsx"
+    faturas = [
+        {
+            "arquivo": "fatura.pdf",
+            "nif_cnpj": "123456789",
+            "valor_total": "1500.00",
+        }
+    ]
+
+    leitor_faturas_pdf.salvar_excel(faturas, caminho)
+
+    planilha = leitor_faturas_pdf.pd.read_excel(caminho, dtype=str)
+    assert list(planilha.columns) == ["arquivo", "nif_cnpj", "valor_total"]
+    assert planilha.iloc[0].to_dict() == {
+        "arquivo": "fatura.pdf",
+        "nif_cnpj": "123456789",
+        "valor_total": "1500.00",
+    }
