@@ -58,3 +58,38 @@ class TestEmail:
         """O script deve ter lógica de envio/montagem de e-mail."""
         tem_email = "MIME" in source_code or "smtp" in source_code.lower()
         assert tem_email, "Lógica de e-mail (MIME/SMTP) não encontrada."
+
+
+class TestGmailAPI:
+    def test_funcao_smtp(self, source_code):
+        assert "enviar_email_smtp" in source_code, (
+            "Função enviar_email_smtp não encontrada."
+        )
+
+    def test_funcao_gmail_api(self, source_code):
+        assert "enviar_email_gmail_api" in source_code, (
+            "Função enviar_email_gmail_api não encontrada."
+        )
+
+    def test_usa_biblioteca_google(self, source_code):
+        assert "googleapiclient" in source_code, (
+            "googleapiclient (Google API) não importado."
+        )
+
+    def test_escopo_gmail_send(self, source_code):
+        assert "gmail.send" in source_code, "Escopo gmail.send não encontrado."
+
+    def test_envia_mensagem_raw(self, source_code):
+        assert "messages().send" in source_code.replace(" ", ""), (
+            "Chamada users().messages().send não encontrada."
+        )
+        assert "urlsafe_b64encode" in source_code, (
+            "Codificação base64 URL-safe da mensagem não encontrada."
+        )
+
+    def test_nao_commita_credenciais(self):
+        raiz = SCRIPT_PATH.parent
+        for nome in ("credentials.json", "token.json"):
+            assert not (raiz / nome).exists(), (
+                f"{nome} não deve ser commitado em AULA12/."
+            )
