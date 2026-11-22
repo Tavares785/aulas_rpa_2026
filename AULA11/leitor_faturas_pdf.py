@@ -44,7 +44,8 @@ def extrair_texto_pdf(caminho_pdf):
     with pdfplumber.open(caminho_pdf) as pdf:
         for numero, pagina in enumerate(pdf.pages, start=1):
             texto_pagina = pagina.extract_text() or ""
-            logging.info(f"{os.path.basename(caminho_pdf)} - página {numero} lida")
+            nome = os.path.basename(caminho_pdf)
+            logging.info(f"{nome} - página {numero} lida")
             texto_completo += texto_pagina + "\n"
     return texto_completo
 
@@ -68,7 +69,7 @@ def converter_valor(valor_texto):
 
 
 def extrair_valor(texto):
-    """Procura primeiro valor com R$; se não achar, procura 'Total: 0000.00'."""
+    """Procura valor com R$; se não achar, procura 'Total: 0000.00'."""
     achado = re.search(PADRAO_VALOR_REAIS, texto)
     if not achado:
         achado = re.search(PADRAO_VALOR_TOTAL, texto, re.IGNORECASE)
@@ -110,7 +111,9 @@ def processar_faturas():
             "valor_total": valor,
             "status": status,
         })
-        logging.info(f"{arquivo}: documento={documento} valor={valor} status={status}")
+        logging.info(
+            f"{arquivo}: documento={documento} valor={valor} status={status}"
+        )
     return resultados
 
 
@@ -125,7 +128,7 @@ def salvar_excel(resultados, caminho=ARQUIVO_SAIDA):
 def main():
     resultados = processar_faturas()
     if not resultados:
-        logging.error("Nada para exportar. Coloque os PDFs em faturas/ e rode de novo.")
+        logging.error("Nada para exportar. Coloque os PDFs em faturas/.")
         return
     df = salvar_excel(resultados)
     print(df.to_string(index=False))
