@@ -1,11 +1,11 @@
 """
-Testes estruturais para AULA10/leitor_faturas_pdf.py.
+Testes estruturais para AULA10/scraper_loja.py.
 
 Valida que:
 - O script existe
-- Importa as bibliotecas obrigatórias (pdfplumber, pandas, re)
-- Usa expressões regulares
-- Gera o arquivo Excel
+- Importa requests e BeautifulSoup
+- Valida status 200
+- Salva resultado em CSV
 """
 
 import pathlib
@@ -13,15 +13,15 @@ import pathlib
 import pytest
 
 
-SCRIPT_PATH = pathlib.Path(__file__).parent.parent / "AULA10" / "leitor_faturas_pdf.py"
+SCRIPT_PATH = pathlib.Path(__file__).parent.parent / "AULA10" / "scraper_loja.py"
 
 
 class TestScriptExiste:
     def test_arquivo_existe(self):
-        assert SCRIPT_PATH.exists(), "AULA10/leitor_faturas_pdf.py não encontrado."
+        assert SCRIPT_PATH.exists(), "AULA10/scraper_loja.py não encontrado."
 
     def test_arquivo_nao_vazio(self):
-        assert SCRIPT_PATH.stat().st_size > 0, "leitor_faturas_pdf.py está vazio."
+        assert SCRIPT_PATH.stat().st_size > 0, "scraper_loja.py está vazio."
 
 
 @pytest.fixture(scope="module")
@@ -32,33 +32,31 @@ def source_code():
 
 
 class TestImports:
-    def test_importa_pdfplumber(self, source_code):
-        assert "pdfplumber" in source_code, "pdfplumber não importado."
+    def test_importa_requests(self, source_code):
+        assert "requests" in source_code, "requests não importado."
 
-    def test_importa_pandas(self, source_code):
-        assert "pandas" in source_code or "import pd" in source_code, (
-            "pandas não importado."
+    def test_importa_beautifulsoup(self, source_code):
+        assert "BeautifulSoup" in source_code, "BeautifulSoup não importado."
+
+
+class TestLogica:
+    def test_valida_status_code(self, source_code):
+        """O script deve verificar o status code 200."""
+        assert "status_code" in source_code or "200" in source_code, (
+            "Verificação de status_code 200 não encontrada."
         )
 
-    def test_importa_re(self, source_code):
-        """O script deve usar expressões regulares (módulo re)."""
-        assert "import re" in source_code or "from re" in source_code, (
-            "Módulo 're' não importado."
-        )
+    def test_usa_html_parser(self, source_code):
+        """O script deve usar 'html.parser'."""
+        assert "html.parser" in source_code, "'html.parser' não utilizado."
+
+    def test_usa_find_all_ou_select(self, source_code):
+        """O script deve usar find_all ou select para raspar elementos."""
+        usa = "find_all" in source_code or "select" in source_code
+        assert usa, "find_all() ou select() não utilizados."
 
 
-class TestRegex:
-    def test_usa_re_search_ou_findall(self, source_code):
-        """O script deve usar re.search ou re.findall para extrair padrões."""
-        usa_regex = "re.search" in source_code or "re.findall" in source_code
-        assert usa_regex, "re.search ou re.findall não utilizados."
-
-
-class TestExportacao:
-    def test_gera_excel(self, source_code):
-        """O script deve salvar em .xlsx."""
-        assert "xlsx" in source_code, "Referência a .xlsx não encontrada."
-
-    def test_usa_to_excel(self, source_code):
-        """O script deve usar DataFrame.to_excel()."""
-        assert "to_excel" in source_code, "Método to_excel() não utilizado."
+class TestSaida:
+    def test_salva_csv(self, source_code):
+        """O script deve salvar resultado em CSV."""
+        assert "csv" in source_code.lower(), "Referência a CSV não encontrada."
