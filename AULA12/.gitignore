@@ -1,0 +1,9 @@
+/**/*_resp.md
+.venv/
+.kiro/
+.pytest_cache/
+/**/__pycache__/
+.env
+
+credentials.json
+token.json
