@@ -1,5 +1,6 @@
 /**/*_resp.md
 .venv/
+.venv-windows/
 .kiro/
 .pytest_cache/
 /**/__pycache__/
