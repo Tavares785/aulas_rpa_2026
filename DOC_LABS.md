@@ -26,10 +26,10 @@ toda Pull Request usando `flake8` (lint/PEP8) e `pytest`.
 | `AULA07/` | Projeto Guiado: Lançamento de Notas | `lab-07.md` | `lab-07_resp.md` | Automação de formulário com teclado (`lancador_notas.py`) |
 | `AULA08/` | Web Scraping com Selenium | `lab-08.md` | `lab-08_resp.md` | Login web automatizado (`bot_web_login.py`) |
 | `AULA09/` | Dropdowns, Pop-ups e Iframes | `lab-09.md` | `lab-09_resp.md` | Selects, alerts e iframes (`web_avancado.py`) |
-| `AULA10/` | Extração de PDFs, Regex e Excel | `lab-10.md` | `lab-10_resp.md` | Regex + Pandas + Excel (`leitor_faturas_pdf.py`) |
-| `AULA11/` | Web Scraping com BeautifulSoup | `lab-11.md` | `lab-11_resp.md` | Requests + BeautifulSoup + CSV (`scraper_noticias.py`) |
+| `AULA10/` | Web Scraping com BeautifulSoup | `lab-10.md` | `lab-10_resp.md` | Requests + BeautifulSoup + CSV (`scraper_loja.py`) |
+| `AULA11/` | Extração de PDFs, Regex e Excel | `lab-11.md` | `lab-11_resp.md` | Regex + Pandas + Excel (`leitor_faturas_pdf.py`) |
 | `AULA12/` | APIs REST e Notificações por E-mail | `lab-12.md` | `lab-12_resp.md` | Consumo de API + SMTP (`bot_cotacao_alerta.py`) |
-| `AULA13/` | Filas, Assíncrono e Resiliência | `lab-13.md` | `lab-13_resp.md` | Produtor-Consumidor + Retry (`bot_faturamento_avancado.py`) |
+| `AULA13/` | Filas, Assíncrono e Resiliência | `lab-13.md` | `lab-13_resp.md` | Produtor-Consumidor + Retry, reutilizando o CSV da AULA07 (`bot_faturamento_avancado.py`) |
 | `AULA14/` | Arquitetura, Gitignore e Repositório | `lab-14.md` | `lab-14_resp.md` | Estrutura do projeto final (`rpa-projeto-final/`) |
 
 > Os arquivos `lab-XX_resp.md` são **gabaritos/materiais do professor**. Os
