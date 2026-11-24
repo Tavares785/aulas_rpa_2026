@@ -5,3 +5,8 @@
 /**/__pycache__/
 
 lab-professor/
+credentials.json
+token.json
+__pycache__/
+*.py[cod]
+.env
