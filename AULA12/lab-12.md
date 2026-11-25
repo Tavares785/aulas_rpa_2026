@@ -4,7 +4,8 @@
 - Entender a diferença entre automação por UI e comunicação nativa por protocolo de rede.
 - Consumir Web APIs REST utilizando verbos HTTP (`GET`) e manipular JSON em dicionários Python.
 - Construir e disparar e-mails automáticos via protocolo SMTP usando as bibliotecas `smtplib` e `email.mime`.
-- Enviar e-mails pela Gmail API do Google, com autenticação OAuth 2.0, e comparar com o envio via SMTP.
+- Enviar e-mails pela Gmail API do Google, com autenticação OAuth 2.0, e comparar com o envio vi3. **Notificação por E-mail via SMTP:**
+a SMTP.
 
 ## 💼 Desafio de Mercado
 Acionar navegadores por interface gráfica para buscar informações simples (ex: cotação de moedas, validação de CEP ou envio de alertas) gera lentidão e fragilidade. A forma profissional e escalável de automação conecta-se diretamente às APIs dos serviços e envia notificações por e-mail.
