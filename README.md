@@ -79,3 +79,5 @@ Elevando a engenharia de software do bot. Vamos aplicar arquiteturas escaláveis
 ---
 
 💡 *Anotem os resultados das suas pesquisas e tragam as dúvidas para os nossos encontros*
+
+Trabalho realizado por: Ryan Dev Lima (Ryan Tavares de Lima)
